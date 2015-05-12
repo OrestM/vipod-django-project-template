@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+
+  <head>
+    <meta charset="utf-8">
+	
+	<title>Форма Редагування Студентів</title>
+	  
+    <meta name="description" value="Система Обліку Студентів Навчального закладу"/>
+	
+	<!-- Include Style -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="./css/form.css">
+	
+	<!-- <style type="text/css">.col-xs-12, .col-xs-4, .col-xs-8 {border:1px solid red;}</style> -->
+	
+  </head>
+  
+  <body>
+  
+    <!-- Start Header-->
+	<div class="row" id="header">
+	
+	  <!-- Logo Header---->
+	  <div class="col-xs-8">
+	    <h1>Форма редагування Студента</h1>
+	  </div>
+	<!-- End Header -->
+	</div>
+	
+	<!-- Forms -->
+	<div class="row" id="form">
+      <div class="col-xs-12">
+	    <table id="form">
+		  <tbody>
+		    <tr>
+			  <td id="value1">Ім'я*</td>
+			  <td><input type="text" placeholder="Орест"></td>
+			</tr>
+			<tr>
+			  <td id="value1">По-батькові</td>
+			  <td id="name2"><input type="text" placeholder="Богданович"></td>
+			</tr>
+			<tr>
+			  <td id="value1">Прізвище*</td>
+			  <td id="name2"><input type="text" placeholder="Муха"></td>
+			</tr>
+			<tr>
+			  <td id="value1">№ Білету*</td>
+			  <td id="name2"><input type="text" placeholder="254"></td>
+			</tr>
+			<tr>
+			  <td id="value1">Дата народження</td>
+			  <td id="name2"><input type="text" placeholder="1991-08-14"></td>
+			</tr>
+			<tr>
+			  <td id="value1" style="vertical-align:top">Фото</td>
+			  <td id="name2">Наразі:<a href="#">student_photo.1.jpg</a><br>Очистити</td>
+			</tr>
+			<tr>
+			  <td id="value1">
+			  <td>Змінити<input type="file" accept="jpe"></td>
+			  </td>
+			</tr>
+			<tr>
+                <td id="value1">Група*</td>
+                <td id="name2">
+                    <select id="selected">
+                      <option>МтМ-21</option>
+                      <option>МтМ-22</option>
+                      <option>МтМ-23</option>
+                    </select>
+                </td>
+              </tr>
+			  <tr>
+			    <td id="value1">Додаткові нотатки</td>
+				<td><textarea id="text-area" rows="5"></textarea>
+				</td>
+		      </tr>
+			</tbody>
+		  </table>
+		</div>
+		<!-- End Form -->
+		
+		<!-- Add Button -->
+		<div class="col-xs-12" id="button-footer">
+          <button class="btn btn-primary" id="button1">Змінити</button>
+          <button class="btn btn-link" id="button2">Скасувати</button>
+
+        </div>
+	  </div>
+	
+	  
+	  
+	  
+  </body>
+</html>  
