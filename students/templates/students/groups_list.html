@@ -39,20 +39,10 @@
 	</tbody>
 	</table>
 	<!-- End Students Listing -->
+	{% include "students/pagination.html" %}
+	
     {% else %}
       <p>Поки немає груп у базі.</p>
     {% endif %}
 	
-	<nav>
-	  <ul class="pagination">
-	    <li><a href="#">&laquo;</a></li>
-		<li><a href="#">1</a></li>
-		<li class="activate"><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">&raquo;</a></li>
-	  </ul>
-	</nav>
-		  
 {% endblock content %}
