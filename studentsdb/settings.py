@@ -114,3 +114,6 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("dj
 TEMPLATE_DIRS = (
 	'C:/data/work/virtualenvs/studentsdb/src/studentsdb/students/templates/students',
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT =os.path.join(BASE_DIR, '..', 'media')
