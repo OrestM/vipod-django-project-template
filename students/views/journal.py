@@ -3,37 +3,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from ..models import Journal
+from ..models import Group
+from ..models import Student
 
 def journal_list(request):
-	groups = (
-		{'id': 1,
-		 'name': u'МтМ-21',
-		 'leader': u'Ячмене Олег'},
-		{'id': 2,
-		 'name': u'МтМ-22',
-		 'leader': u'Муха Орест'},
-		{'id': 3,
-		 'name': u'МтМ-23',
-		 'leader': u'Іванов Андрій'},
-	)
+	groups = Group.objects.all()
 	
-	students = (
-		{'id': 1,
-		 'first_name': u'Корост',
-		 'last_name': u'Андрій',
-		 'ticket': 2123,
-		 'image': 'img/pin.png'},
-		{'id': 2,
-		 'first_name': u'Корпюк',
-		 'last_name': u'Роман',
-		 'ticket': 215,
-		 'image': 'img/pin.png'},
-		{'id': 3,
-		 'first_name': u'Гриців',
-		 'last_name': u'Віктор',
-		 'ticket': 28,
-		 'image': 'img/pin.png'},
-	)
+	students = Student.objects.all()
+	
+	journal = Journal.objects.all()
 	
 	journal = (
 		{'day_of_weak': u'Пн',

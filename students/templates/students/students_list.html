@@ -10,26 +10,55 @@
 <a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a>
 		  
 <!-- Starts Students Listing -->
+	
   <table class="table table-hover table-striped">
+  {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
     <thead>
 	  <tr>
-		<th><a href="">№</a></th>
+		<th>
+		<a href="{% url "home" %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		№
+		{% if order_by == 'id' and reverse != '1' %}&uarr;
+		{% elif order_by == 'id' and reverse == '1' %}&darr;
+		{% endif %}</a></th>
+		
 		  <th>Фото</th>
-			<th><a href="">Прізвище &uarr;</th>
-			<th><a href="#">Ім'я</a></th>
-			<th><a href="#">№ Білету</a></th>
+		  
+			<th><a href="{% url "home" %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
+			Прізвище
+			{% if order_by == 'last_name' and reverse != '1'%}&uarr;
+			{% elif order_by == 'last_name' and reverse == '1' %}&darr;
+			{% endif %}</a></th>
+			
+			<th><a href="{% url "home" %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
+			Ім'я
+			{% if order_by == 'first_name' and reverse != '1'%}&uarr;
+			{% elif order_by == 'first_name' and reverse == '1' %}&darr;
+			{% endif %}</a></th>
+			
+			<th><a href="{% url "home" %}?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&amp;reverse=1{% endif %}">
+			№ Білету
+			{% if order_by == 'ticket' and reverse != '1' %}&uarr;
+			{% elif order_by == 'ticket' and reverse == '1' %}&darr;
+			{% endif %}</a></th>
+			
 			<th>Дії</th>
-			 </tr>
+		</tr>
 	</thead>
+	{% endwith %}
 	<tbody>
 	{% for student in students %}
 	<tr>
 	  <td>{{ forloop.counter }}</td>
-		<td><img src="{% static student.image %}" height="30" width="30" class="img-circle" /></td>
-		  <td><a href="{% url "students_edit" student.id %}">{{ student.last_name }}</td>
-		  <td><a href="{% url "students_edit" student.id %}">{{ student.first_name }}</td>
-		  <td>{{ student.ticket }}</td>
-		<td>
+		{% if student.photo %}
+		<td><img class="img-circle" src="{{ student.photo.url }}" height="30" width="30" /></td>
+		{% else %}
+		<td><img class="img-circle" src="{% static "img/default_user.png" %}" height="30" width="30" /></td>
+		{% endif %}
+		<td><a href="{% url "students_edit" student.id %}">{{ student.last_name }}</td>
+		<td><a href="{% url "students_edit" student.id %}">{{ student.first_name }}</td>
+		<td>{{ student.ticket }}</td>
+	  <td>
 		  <div class="btn-group">
 		  <button class="btn btn-default dropdown-toggle" type"button" data-toggle="dropdown">Дія<span class="caret"></span>
 		  </button>
@@ -45,7 +74,10 @@
 			  
 	</tbody>
 	</table>
+	
+	
 	<!-- End Students Listing -->
-{% include "students/pagination.html" %}
+	{% include "students/pagination.html" %}
+	{%block pagination%}{%endblock pagination%}
 	
 {% endblock content %}

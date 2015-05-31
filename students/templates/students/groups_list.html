@@ -7,21 +7,38 @@
 {% block content %}
 
 <!-- Starts Students Listing -->
-  {% if groups %}
+  
   <table class="table">
+  {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
     <thead>
 	  <tr>
-		<th><a href="#">#</th>
-		<th><a href="#">Назва &uarr;</a></th>
-		<th><a href="#">Староста</a></th>
+		<th>
+		<a href="{% url "groups" %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		#
+		{% if order_by == 'id' and reverse != '1' %}&uarr;
+		{% elif order_by == 'id' and reverse == '1' %}&darr;
+		{% endif %}</a></th>
+		<th>
+		<a href="{% url "groups" %}?order_by=title{% if order_by == 'title' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		Назва 
+		{% if order_by == 'title' and reverse != '1' %}&uarr;
+		{% elif order_by == 'title' and reverse == '1' %}&darr;
+		{% endif %}</a></th>
+		<th>
+		<a href="{% url "groups" %}?order_by=leader{% if order_by == 'leader' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		Староста
+		{% if order_by == 'leader' and reverse != '1' %}&uarr;
+		{% elif order_by == 'leader' and reverse == '1' %}&darr;
+		{% endif %}</a></th>
 		<th>Дії</th>
 	  </tr>
 	</thead>
+	{% endwith %}
 	<tbody>
 	{% for group in groups %}
 	<tr>
 	  <td>{{ forloop.counter }}</td>
-	  <td><a href="{% url "groups_edit" group.id %}">{{ group.name }}</td>
+	  <td><a href="{% url "groups_edit" group.id %}">{{ group.title }}</td>
 	  <td><a href="{% url "groups_edit" group.id %}">{{ group.leader }}</td>
 	<td>
 	  <div class="btn-group">
@@ -39,10 +56,6 @@
 	</tbody>
 	</table>
 	<!-- End Students Listing -->
-	{% include "students/pagination.html" %}
-	
-    {% else %}
-      <p>Поки немає груп у базі.</p>
-    {% endif %}
-	
+	{% include "students/pagination_groups.html" %}
+	{%block pagination%}{%endblock pagination%}
 {% endblock content %}
