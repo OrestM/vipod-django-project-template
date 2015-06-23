@@ -56,6 +56,9 @@
 	</tbody>
 	</table>
 	<!-- End Students Listing -->
-	{% include "students/pagination_groups.html" %}
-	{%block pagination%}{%endblock pagination%}
+{% with object_list=students %}
+{% include "students/pagination.html" %}
+{% endwith %}
+{%block pagination%}{%endblock pagination%}
+
 {% endblock content %}

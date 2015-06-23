@@ -1,23 +1,26 @@
 {%block pagination%}
-{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-	{{students.student_group}}
-	{% if pages|length > 1 %}
-<nav>
-	<ul class="pagination">
-	<li><a href="{{ request.path }}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&laquo;</a>
-	</li>
-	{% for p in pages %}
-	<li {% if forloop.counter == page %}class="active"{% endif %}>
-	  <a href="{{ request.path }}?page={{ p }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">{{ p }}</a>
-	</li>
-	{% endfor %}
-	
-	<li>
-	  <a href="{{ request.path }}?page={{ pages	| length }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&raquo;</a>
-	</li>
-	
-	</ul>
-</nav>
-{% endif %}
-{% endwith %}
+		
+			<div class="row" id="content-columns">
+				<div class="col-xs-12" id="content-column">
+					{% if is_paginated %}
+					{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+					<nav>
+						<ul class="pagination">
+							<li>
+								<a class = "new-content-pagination" href="?page=1{%if order_by %}&amp;order_by={{ order_by }}{%endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">&laquo;</a>
+							</li>
+							{% for p in paginator.page_range %}
+							<li {% if object_list.number == p %}class="active"{% endif %}>
+								<a class = "new-content-pagination" href="?page={{ p }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">{{ p }}</a>
+							</li>
+							{% endfor %}
+							<li>
+								<a class = "new-content-pagination" href="?page={{ paginator.num_pages }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">&raquo;</a>
+							</li>
+						</ul>
+					</nav>
+					{% endwith %}
+					{% endif %}
+				</div>
+			</div>
 {%endblock pagination%}
