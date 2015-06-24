@@ -43,6 +43,17 @@ class StudentAdmin(admin.ModelAdmin):
 		
 	def view_on_site(self, obj):
 		return reverse('students_edit', kwargs={'pk': obj.id})
+
+class GroupFormAdmin(ModelForm):
+	def clean_leader(self):
+		""" Check if student is leader in any group 
+		
+		If yes, then ensure it's the same as selected group. """
+		# get group where current student is a leader
+		student = Student.objects.filter(leader=self.instance)
+		if student['student_group'] != self.cleaned_data['title'] and self.cleaned_data['leader'] != student:
+			raise ValidationError(u'Студент є старостою іншої групи.', code='invalid')
+		return self.cleaned_data['leader']
 		
 class GroupAdmin(admin.ModelAdmin):
 	list_display = ['title', 'leader', 'notes']
@@ -52,6 +63,7 @@ class GroupAdmin(admin.ModelAdmin):
 	list_filter = ['leader']
 	list_per_page = 10	
 	search_fields = ['title', 'leader', 'notes']
+	form = GroupFormAdmin
 	
 	def view_on_site(self, obj):
 		return reverse('groups_edit', kwargs={obj.id})

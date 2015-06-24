@@ -1,12 +1,14 @@
 {% extends "students/base.html" %}
 
 {% load static from staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block meta_title %}Студенти{% endblock meta_title %}
 
 {% block title %}База Студентів{% endblock title %}
 
 {% block content %}
+
 <a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a>
 	  
 <!-- Starts Students Listing -->
@@ -74,12 +76,11 @@
 		  
 	</tbody>
 	</table>
-	
-	
+
 	<!-- End Students Listing -->
 {% with object_list=students %}
 {% include "students/pagination.html" %}
 {% endwith %}
 {%block pagination%}{%endblock pagination%}
-	
+
 {% endblock content %}

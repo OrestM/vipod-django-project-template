@@ -19,7 +19,7 @@ from django.contrib import admin
 
 from students.views.contact_admin import ContactView
 from students.views.students import StudentUpdateView, StudentCreateView, StudentDeleteView
-from students.views.groups import GroupDeleteView
+from students.views.groups import GroupDeleteView, GroupUpdateView
 from django.http import HttpResponse, HttpResponseRedirect
 
 urlpatterns = patterns('',
@@ -33,7 +33,7 @@ urlpatterns = patterns('',
 	#Groups urls
 	url(r'^groups/$', 'students.views.groups.groups_list', name='groups'),
 	url(r'^groups/add/$', 'students.views.groups.groups_add', name='groups_add'),
-	url(r'^groups/(?P<gid>\d+)/edit/$', 'students.views.groups.groups_edit', name='groups_edit'),
+	url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='groups_edit'),
 	url(r'^groups/(?P<pk>\d+)/delete/$', GroupDeleteView.as_view(), name='groups_delete'),
 	
 	#Journal
