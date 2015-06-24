@@ -112,7 +112,7 @@ def students_add(request):
 	else:
 		# initial form render
 		return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title')})
-
+		
 class StudentUpdateForm(ModelForm):
 	method = 'update'
 	
@@ -151,7 +151,7 @@ class StudentCreateForm(StudentUpdateForm):
 	
 	def __init__(self, *args, **kwargs):
 		super(StudentCreateForm, self).__init__(*args, **kwargs)
-		
+
 def students_list(request):
 
 	current_group = get_current_group(request)
@@ -186,26 +186,14 @@ class StudentUpdateView(UpdateView):
 	model = Student
 	template_name = 'students/students_edit.html'
 	form_class = StudentUpdateForm
-	
-	def clean_student_group(self):
-		""" Check if student is leader in any group 
 		
-		If yes, then ensure it's the same as selected group. """
-		# get group where current student is a leader
-		groups = Group.objects.filter(leader=self.instance)
-		if len(groups) > 0 and self.cleaned_data['student_group'] != groups[0]:
-			raise ValidationError(u'Студент є старостою іншої групи.', code='invalid')
-		return self.cleaned_data['student_group']
-	
 	def get_success_url(self):
-		return u'%s?status_message=Студента успішно збережено!'
+		return u'%s?status_message=Студента успішно збережено!' % reverse ('home')
 		
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
 			return HttpResponseRedirect( u'%s?status_message=Редагування студента відмінено!' % reverse('home'))
-		elif request.POST.get('add_button'):
-			return HttpResponseRedirect( u'%s?status_message=Редагування завершено! Студента успішно збережено!' % reverse('home'))
-			return super(StudentUpdateView, self).post(request, *args, **kwargs)
+		return super(StudentUpdateView, self).post(request, *args, **kwargs)
 		
 class StudentDeleteView(DeleteView):
 	model = Student
