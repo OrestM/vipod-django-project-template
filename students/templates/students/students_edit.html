@@ -1,0 +1,44 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block meta_title %}Редагувати Студента{% endblock meta_title %}
+
+{% block title %}Редагувати Студента{% endblock title %}
+
+{% block status_message %}
+  {% if errors %}
+  <div class="alert alert-warning" role="alert">
+    Будь-ласка, виправте наступні помилки
+  </div>
+  {% endif %}
+  
+{% endblock status_message%}
+
+{% block content %}
+
+{% crispy form %}
+
+<!--
+<form action="{% url "students_edit" object.id %}" method="post" enctype="multipart/form-data" >
+	{% csrf_token %}
+	{% for field in form %}
+    <div class='form-group {%if field.errors%} has-error {%endif%}'>     
+        <div class = 'col-sm-2 control-label'>{{field.label_tag}}</div>
+        <div class = 'col-sm-10'>{{ field }}</div>
+		<span class="help-block">{{ field.errors }}</span>
+	</div>
+	{%endfor%}
+	<div class='form-group'>
+		<label class = 'col-sm-2 control-label'></label>
+		<div class = 'col-sm-10'>
+			<input type="submit" value="Зберегти" name="add_button" class="btn btn-primary" />
+			<button type="submit" name="cancel_button" value="Скасувати" class="btn btn-link">Скасувати</button>
+		</div>
+	</div>
+</form>
+-->
+ 
+ 
+{% endblock content %}
