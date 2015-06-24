@@ -1,0 +1,15 @@
+﻿*.pyc
+.idea
+sshkey
+sshkey.pub
+*∼
+*.egg-info
+*.mo 
+*.egg
+db.py
+email.py
+demo_data.json
+.pyc
+*.py~
+*.txt~
+*.*~
