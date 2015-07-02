@@ -13,13 +13,12 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 
-from .validation import valid_image_minetype, valid_image_size, valid_url_extension
+from .validation import valid_image_minetype, valid_image_size
 from django.contrib.messages import get_messages
 from django.contrib import messages
 from ..utils import paginate, get_current_group
 
 from ..models import Student, Group
-
 
 def students_add(request):
 	# was form posted?
@@ -89,7 +88,7 @@ def students_add(request):
 			# message django.contrib.messages 
 			storage = get_messages(request)
 			for message in storage:
-				pass
+				pass # empty block
 			if errors:
 			# add errors
 				for name_error in errors:
@@ -112,13 +111,13 @@ def students_add(request):
 	else:
 		# initial form render
 		return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title')})
-		
+
 class StudentUpdateForm(ModelForm):
 	method = 'update'
 	
 	class Meta:
 		model = Student
-		fields =  ['first_name', 'last_name', 'middle_name', 'birthday',  'photo', 'ticket', 'student_group', 'notes']
+		fields =  ['first_name', 'last_name', 'middle_name', 'birthday',  'photo', 'ticket', 'student_group', 'notes', 'id']
 		
 	def __init__(self, *args, **kwargs):
 		super(StudentUpdateForm, self).__init__(*args, **kwargs)
@@ -129,8 +128,7 @@ class StudentUpdateForm(ModelForm):
 		if 'update' in self.method:
 			self.helper.form_action = reverse('students_edit',	kwargs={'pk': kwargs['instance'].id})
 		else:		
-			self.helper.form_action = reverse('students_add')
- 		
+			self.helper.form_action = reverse('students_add') 		
 		self.helper.form_method = 'POST'
 		self.helper.form_class = 'form-horizontal'
 
@@ -151,7 +149,7 @@ class StudentCreateForm(StudentUpdateForm):
 	
 	def __init__(self, *args, **kwargs):
 		super(StudentCreateForm, self).__init__(*args, **kwargs)
-
+		
 def students_list(request):
 
 	current_group = get_current_group(request)
@@ -181,11 +179,11 @@ class StudentCreateView(CreateView):
 
 	def get_success_url(self):
 		return u'%s?status_message=Студента збережено!' % reverse('home')
-		
+			
 class StudentUpdateView(UpdateView):
 	model = Student
 	template_name = 'students/students_edit.html'
-	form_class = StudentUpdateForm
+	form_class = StudentCreateForm
 		
 	def get_success_url(self):
 		return u'%s?status_message=Студента успішно збережено!' % reverse ('home')

@@ -9,8 +9,7 @@
 
 {% block content %}
 
-<a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a>
-	  
+<a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a> 
 <!-- Starts Students Listing -->
 	
   <table class="table table-hover table-striped">
@@ -81,6 +80,6 @@
 {% with object_list=students %}
 {% include "students/pagination.html" %}
 {% endwith %}
-{%block pagination%}{%endblock pagination%}
+{% block pagination %}{% endblock pagination %}
 
 {% endblock content %}

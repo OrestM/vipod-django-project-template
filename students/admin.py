@@ -4,6 +4,7 @@ from models.students import Student
 from models.groups import Group
 from models.journal import Journal
 from models.exam import Exam
+from models.monthjournal import MonthJournal
 
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, ValidationError
@@ -26,8 +27,8 @@ class StudentFormAdmin(ModelForm):
 		# get group where current student is a leader
 		groups = Group.objects.filter(leader=self.instance)
 		if len(groups) > 0 and self.cleaned_data['student_group'] != groups[0]:
-			raise ValidationError(u'Студент є старостою іншої групи.', code='invalid')
-		return self.cleaned_data['student_group']
+            
+			return self.cleaned_data['student_group']
 
 class StudentAdmin(admin.ModelAdmin):
 	list_display = ['last_name', 'first_name', 'ticket', 'student_group']
@@ -74,3 +75,4 @@ admin.site.register(Student, StudentAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Journal)
 admin.site.register(Exam)
+admin.site.register(MonthJournal)

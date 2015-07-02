@@ -1,15 +1,5 @@
 import magic
 
-VALID_IMAGE_EXTENSIONS = [
-    ".jpg",
-    ".jpeg",
-    ".png",
-    ".gif",
-]
-
-def valid_url_extension(url, extension_list=VALID_IMAGE_EXTENSIONS):    
-    return any([url.endswith(e) for e in extension_list])
-
 VALID_IMAGE_MINETYPES = [
     "image"
 ]
@@ -27,7 +17,7 @@ def valid_image_minetype(fobject):
     else:
         return False 
 
-MAX_SIZE = 2*1024*1024
+MAX_SIZE = 2*1024*1024 # 2 mb
 
 def valid_image_size(image, max_size=MAX_SIZE):
     width, height = image.size
