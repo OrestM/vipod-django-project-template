@@ -141,7 +141,7 @@ class StudentUpdateForm(ModelForm):
  		# add buttons
 		self.helper.layout[-1] = FormActions(
 			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+			Submit('cancel_button_add', u'Скасувати', css_class="btn btn-link"),
 		)
 		
 class StudentCreateForm(StudentUpdateForm):
