@@ -4,14 +4,16 @@ from django.db import models
 class MonthJournal(models.Model):
 	""" Student Monthly Journal """
 	
+	# add to class model monthjournal
 	class Meta:
 		verbose_name = u'Місячний Журнал'
 		verbose_name_plural = u'Місячні Журнали'
-		
+	
+	# field peg student
 	student  = models.ForeignKey('Student',
 		verbose_name=u'Студент',
 		blank=False,
-		unique_for_month='date')
+		unique_for_month='date') # add new attribute which works coupled with date
 			
 	# we only need year and month, so always set day to first day of the month
 	date = models.DateField(
