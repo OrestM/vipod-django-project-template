@@ -20,6 +20,7 @@ from django.contrib import admin
 from students.views.contact_admin import ContactView
 from students.views.students import StudentUpdateView, StudentCreateView, StudentDeleteView
 from students.views.groups import GroupAddView, GroupDeleteView, GroupUpdateView
+from students.views.journal import JournalView
 from django.http import HttpResponse, HttpResponseRedirect
 
 urlpatterns = patterns('',
@@ -37,7 +38,7 @@ urlpatterns = patterns('',
 	url(r'^groups/(?P<pk>\d+)/delete/$', GroupDeleteView.as_view(), name='groups_delete'),
 	
 	#Journal
-    url(r'^journal/$', 'students.views.journal.journal_list', name='journal'),
+    url(r'^journal/$', JournalView.as_view(), name='journal'),
 	
 	
 	#Exam
