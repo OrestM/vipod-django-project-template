@@ -2,3 +2,5 @@ Django == 1.8.1
 Pillow
 MySQL-python
 django-crispy-forms==1.4.0
+python-dateutil
+
