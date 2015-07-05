@@ -112,9 +112,7 @@ def students_add(request):
 		# initial form render
 		return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title')})
 
-class StudentUpdateForm(ModelForm):
-	method = 'update'
-	
+class StudentUpdateForm(ModelForm):	
 	class Meta:
 		model = Student
 		fields =  ['first_name', 'last_name', 'middle_name', 'birthday',  'photo', 'ticket', 'student_group', 'notes', 'id']
@@ -125,10 +123,7 @@ class StudentUpdateForm(ModelForm):
 		self.helper = FormHelper(self)
 
 		# set form tag attributes
-		if 'update' in self.method:
-			self.helper.form_action = reverse('students_edit',	kwargs={'pk': kwargs['instance'].id})
-		else:		
-			self.helper.form_action = reverse('students_add') 		
+		self.helper.form_action = reverse('students_edit',	kwargs={'pk': kwargs['instance'].id})		
 		self.helper.form_method = 'POST'
 		self.helper.form_class = 'form-horizontal'
 
@@ -141,14 +136,36 @@ class StudentUpdateForm(ModelForm):
  		# add buttons
 		self.helper.layout[-1] = FormActions(
 			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-			Submit('cancel_button_add', u'Скасувати', css_class="btn btn-link"),
+			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
 		)
 		
-class StudentCreateForm(StudentUpdateForm):
-	method = 'create'
+class StudentCreateForm(ModelForm):
 	
+	class Meta:
+		model = Student
+		fields =  ['first_name', 'last_name', 'middle_name', 'birthday',  'photo', 'ticket', 'student_group', 'notes', 'id']
+		
 	def __init__(self, *args, **kwargs):
 		super(StudentCreateForm, self).__init__(*args, **kwargs)
+			
+		self.helper = FormHelper(self)
+
+		# set form tag attributes
+		self.helper.form_action = reverse('students_add')		
+		self.helper.form_method = 'POST'
+		self.helper.form_class = 'form-horizontal'
+
+		# set form field properties
+		self.helper.help_text_inline = True
+		self.helper.html5_required = True
+		self.helper.label_class = 'col-sm-2 control-label'
+		self.helper.field_class = 'col-sm-10'
+		
+ 		# add buttons
+		self.helper.layout[-1] = FormActions(
+			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
+			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+		)
 		
 def students_list(request):
 
