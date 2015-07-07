@@ -69,7 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-				
+				"students.context_processors.groups_processor",				
             ],
         },
     },
@@ -106,7 +106,7 @@ STATIC_URL = '/static/'
 # Portal url is in context_pocessors.py
 # PORTAL_URL = 'http://localhost:8000'
 
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("django.core.context_processors.request", "studentsdb.context_processors.students_proc",)
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("django.core.context_processors.request", "studentsdb.context_processors.students_proc", )
 
 TEMPLATE_DIRS = (
 	'C:/data/work/virtualenvs/studentsdb/src/studentsdb/students/templates/students',
