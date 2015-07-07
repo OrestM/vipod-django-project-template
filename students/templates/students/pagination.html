@@ -1,11 +1,13 @@
 {%block pagination%}
 	<div class="row" id="content-columns">
 			<div class="col-xs-12" id="content-column">
+				<!-- check if we need paginated -->
 				{% if is_paginated %}
 				{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
 				<nav>
 					<ul class="pagination">
 						<li>
+							<!-- link to first page -->
 							<a class = "new-content-pagination" href="?page=1{%if order_by %}&amp;order_by={{ order_by }}{%endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">&laquo;</a>
 						</li>
 						{% for p in paginator.page_range %}
