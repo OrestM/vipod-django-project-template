@@ -18,6 +18,11 @@
 
 {% else %}
 
+<div class="alert alert-warning">
+	Зміни в журнал зберігаються автоматично при кожному кдіку в клітинці таблиці.
+	<span class="alert alert-danger" id="ajax-progress-indicator">Йде збереження...</span>
+</div>
+
 <p id="journal-nav" class="text-center">
   <a href="?month={{ prew_month }}" title="Попередній Місяць">&larr;</a>
   
