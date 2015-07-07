@@ -17,8 +17,8 @@ class MonthJournal(models.Model):
 			
 	# we only need year and month, so always set day to first day of the month
 	date = models.DateField(
-		verbose_name=False,
-		unique_for_month='date')
+		verbose_name=u'Дата',
+		blank=False)
 	"""		
 	# list of days, each says whether was presence or not
 	present_day1 = models.BooleanField(default=False)
