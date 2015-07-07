@@ -168,25 +168,24 @@ class StudentCreateForm(ModelForm):
 		)
 		
 def students_list(request):
-
+	# check if we need to show only one group of students
 	current_group = get_current_group(request)
 	if current_group:
 		students = Student.objects.filter(student_group = current_group)
 	else:
-		#get all students
+		# otherwise show all students
 		students = Student.objects.all()
 
-	#trying to order student list
-	if request.path == '/':
-		students = students.order_by('last_name')
-	order_by=request.GET.get('order_by', '')
-	if order_by in ('last_name', 'first_name', 'ticket', 'id'): #order by last_name, first_name, ticket, id
+	# try to order student list
+	order_by = request.GET.get('order_by', '')
+	if order_by in ('last_name', 'first_name', 'ticket'):
 		students = students.order_by(order_by)
 		if request.GET.get('reverse', '') == '1':
 			students = students.reverse()
-
-	context= {}
-	context = paginate(students, 3, request, {}, var_name = 'students')
+			
+	# apply pagination, 3 students per page
+	context = paginate(students, 3, request, {}, var_name='students')
+	
 	return render(request, 'students/students_list.html', context)
 		
 class StudentCreateView(CreateView):
