@@ -40,8 +40,10 @@
 			<strong>Група:</strong>
 			<select>
 			  <option value="">Усі Студенти</option>
-			  <option value="">МтМ - 21, Орест Муха (№ 254)</option>
-			  <option value="">МтМ - 22, Корост Андрій (№ 2123)</option>
+			 {% for group in GROUPS %}
+			 <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>
+			 {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+			 {% endfor %}
 			</select>
 		</div>
 	  </div>
