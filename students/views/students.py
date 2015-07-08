@@ -177,7 +177,7 @@ def students_list(request):
 		students = Student.objects.all()
 
 	# try to order student list
-	order_by = request.GET.get('order_by', '')
+	order_by = request.GET.get('order_by', 'last_name')
 	if order_by in ('last_name', 'first_name', 'ticket'):
 		students = students.order_by(order_by)
 		if request.GET.get('reverse', '') == '1':
@@ -199,7 +199,7 @@ class StudentCreateView(CreateView):
 class StudentUpdateView(UpdateView):
 	model = Student
 	template_name = 'students/students_edit.html'
-	form_class = StudentCreateForm
+	form_class = StudentUpdateForm
 		
 	def get_success_url(self):
 		return u'%s?status_message=Студента успішно збережено!' % reverse ('home')
