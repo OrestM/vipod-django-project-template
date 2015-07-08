@@ -50,11 +50,11 @@ function initGroupSelector() {
 	});
 }
 
-function initDateFields() {
-	$('input.dateinput').datetimepicker({
+function initDateFields() {	
+	$('input.dateinput').datetimepicker({		
 		'format': 'YYYY-MM-DD'
 	}).on('dp.hide', function(event){
-		$(this).blur();
+		$(this).blur();	
 	});
 }
 
