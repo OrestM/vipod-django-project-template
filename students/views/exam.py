@@ -15,17 +15,13 @@ def exam_list(request):
 	else:
 		exam = Exam.objects.all()
 
-	#making sorting for exam
-
-	if request.path == 'exam/':
-		exam = exam.order_by('title')
-	order_by=request.GET.get('order_by', '')
-	if order_by in ('name', 'data', 'teacher', 'group'): 
+	# try to order group list
+	order_by = request.GET.get('order_by', '')
+	if order_by in ('name', 'data_time', 'teacher'):
 		exam = exam.order_by(order_by)
 		if request.GET.get('reverse', '') == '1':
 			exam = exam.reverse()
-
-	context= {}
-	context = paginate(exam, 3, request, context, var_name = 'exam')
-	return render(request, 'students/exam_list.html', {'exam':context['page_obj'], 'is_paginated':context['is_paginated'],
-		'paginator': context['paginator'], 'context':context})
+			
+	context = paginate(exam, 3, request, {}, var_name = 'exam')
+	
+	return render(request, 'students/exam_list.html', context)
