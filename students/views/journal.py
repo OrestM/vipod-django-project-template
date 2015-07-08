@@ -4,16 +4,17 @@ from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange, weekday, day_abbr
 
+from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.urlresolvers import reverse
 from django.views.generic.base import TemplateView
 
 from ..models import MonthJournal, Student
-from ..utils import paginate
+from ..utils import paginate, get_current_group
 
 class JournalView(TemplateView):
 	template_name = 'students/journal.html'
-	
+			
 	def get_context_data(self, **kwargs):
 		# get context data from TemplateView class
 		context = super(JournalView, self).get_context_data(**kwargs)
@@ -45,7 +46,7 @@ class JournalView(TemplateView):
 		context['month_header'] = [{'day': d,
 			'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
 			for d in range(1, number_of_days+1)]
-			
+				
 		# get all students from database, or just one if we need to
 		# display journal for one student
 		if kwargs.get('pk'):
