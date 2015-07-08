@@ -11,31 +11,29 @@ from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 
 from ..utils import paginate, get_current_group
-from ..models import Group	
+from ..models import Group
 
 def groups_list(request):
-	
 	groups = []
-	current_group = get_current_group(request)
 
+	# check if we need to show only one student of groups
+	current_group = get_current_group(request)
 	if current_group:
 		groups.append(current_group)
 	else:
+		# otherwise show all groups
 		groups = Group.objects.all()
 
-	#trying to ordergroups
-	if request.path == 'groups/':
-		groups = groups.order_by('title')
-	order_by=request.GET.get('order_by', '')
-	if order_by in ('title', 'leader', 'id'): #sorting by title, leader, id
+	# try to order group list
+	order_by = request.GET.get('order_by', '')
+	if order_by in ('title', 'leader', 'id'):
 		groups = groups.order_by(order_by)
 		if request.GET.get('reverse', '') == '1':
 			groups = groups.reverse()
-
+			
+	# apply pagination, 3 students per page
+	context = paginate(groups, 3, request, {}, var_name='groups')
 	
-	context= {}
-	context = paginate(groups, 3, request, context, var_name = 'groups')
-
 	return render(request, 'students/groups_list.html', context)
 	
 class BaseGroupFormView(object):
