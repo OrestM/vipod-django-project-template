@@ -61,7 +61,7 @@ function initDateFields() {
 function initEditStudentPage() {
 	$('a.student-edit-form-link').click(function(event){
 		var link = $(this);
-		$.ajax({
+		$.ajax({			
 			'url': link.attr('href'),
 			'dataType': 'html',
 			'type': 'get',
@@ -105,7 +105,7 @@ function initEditStudentForm(form, modal) {
 	// close modal window on Cancel button click
 	form.find('input[name="cancel_button"]').click(function(event){
 		modal.modal('hide');
-		return false;
+		return false;	
 	});
 
 	// make form work in AJAX mode
@@ -130,7 +130,7 @@ function initEditStudentForm(form, modal) {
 		} else {
 			// if no form, it means success and we need to reload page
 			// to get updated students list;
-			// reload after 2 seconds, so that user can read success message
+			// reload after 2 seconds, so that user can read success message			
 			setTimeout(function(){location.reload(true);}, 500);
 			}
 		}
