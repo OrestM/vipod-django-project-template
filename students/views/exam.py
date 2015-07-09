@@ -18,7 +18,7 @@ from ..utils import paginate, get_current_group
 from ..models import Exam
 
 def exam_list(request):
-	# check if we need to show only one group of students
+	# check if we need to show only one group of exam
 	group = get_current_group(request)
 	if group:
 		exam = Exam.objects.filter(group = group)
@@ -26,14 +26,14 @@ def exam_list(request):
 		# otherwise show all students
 		exam = Exam.objects.all()
 
-	# try to order student list
+	# try to order exam list
 	order_by = request.GET.get('order_by', '')
 	if order_by in ('name', 'teacher', 'data_time' ,'group'):
 		exam = exam.order_by(order_by)
 		if request.GET.get('reverse', '') == '1':
 			exam = exam.reverse()
 			
-	# apply pagination, 3 students per page
+	# apply pagination, 3 exam per page
 	context = paginate(exam, 3, request, {}, var_name='exam')
 	
 	return render(request, 'students/exam_list.html', context)
