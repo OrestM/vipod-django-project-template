@@ -1,13 +1,13 @@
 ﻿# -*- coding: utf-8 -*-
 from django.contrib import admin
+from django.core.urlresolvers import reverse
+from django.forms import ModelForm, ValidationError
+
 from models.students import Student
 from models.groups import Group
 from models.journal import Journal
 from models.exam import Exam
 from models.monthjournal import MonthJournal
-
-from django.core.urlresolvers import reverse
-from django.forms import ModelForm, ValidationError
 
 def make_copy(modeladmin, request, queryset):
 	for query in queryset:
@@ -27,8 +27,8 @@ class StudentFormAdmin(ModelForm):
 		# get group where current student is a leader
 		groups = Group.objects.filter(leader=self.instance)
 		if len(groups) > 0 and self.cleaned_data['student_group'] != groups[0]:
-            
-			return self.cleaned_data['student_group']
+				raise ValidationError(u'Студент є старостою іншої групи.', code='invalid')
+		return self.cleaned_data['student_group']
 
 class StudentAdmin(admin.ModelAdmin):
 	list_display = ['last_name', 'first_name', 'ticket', 'student_group']
@@ -44,18 +44,7 @@ class StudentAdmin(admin.ModelAdmin):
 		
 	def view_on_site(self, obj):
 		return reverse('students_edit', kwargs={'pk': obj.id})
-
-class GroupFormAdmin(ModelForm):
-	def clean_leader(self):
-		""" Check if student is leader in any group 
-		
-		If yes, then ensure it's the same as selected group. """
-		# get group where current student is a leader
-		student = Student.objects.filter(leader=self.instance)
-		if student['student_group'] != self.cleaned_data['title'] and self.cleaned_data['leader'] != student:
-			raise ValidationError(u'Студент є старостою іншої групи.', code='invalid')
-		return self.cleaned_data['leader']
-		
+	
 class GroupAdmin(admin.ModelAdmin):
 	list_display = ['title', 'leader', 'notes']
 	list_display_links = ['title']
@@ -64,10 +53,9 @@ class GroupAdmin(admin.ModelAdmin):
 	list_filter = ['leader']
 	list_per_page = 10	
 	search_fields = ['title', 'leader', 'notes']
-	form = GroupFormAdmin
-	
+		
 	def view_on_site(self, obj):
-		return reverse('groups_edit', kwargs={obj.id})
+		return reverse('groups_edit', kwargs={'pk': obj.id})
 	
 		
 # Register your models here.
