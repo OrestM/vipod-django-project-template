@@ -16,7 +16,8 @@ class Exam(models.Model):
 		
 	data_time=models.DateField(
 		blank=False,
-		verbose_name=u"Дата і Час")
+		verbose_name=u"Дата і Час",
+		null=True)
 		
 	teacher=models.CharField(
 		max_length=256,

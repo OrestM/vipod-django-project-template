@@ -166,7 +166,7 @@ class StudentCreateForm(ModelForm):
 			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
 			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
 		)
-		
+				
 def students_list(request):
 	# check if we need to show only one group of students
 	current_group = get_current_group(request)

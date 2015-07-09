@@ -58,9 +58,12 @@
     <label for="birthday" class="col-sm-2 control-label">Дата Народження*</label>
 	<div class="col-sm-10">
       <input type="text" value="{{ request.POST.birthday }}"
-             name="birthday" id="birthday"
-             placeholder="Напр. 1984-12-30" class="form-control"/>
-      <span class="help-block">{{ errors.birthday }}</span>
+             name="birthday" id="birthday" 
+             placeholder="Напр. 1984-12-30" class="form-control btn gliphicon"/>
+      <span class="help-block">{{ errors.birthday }}</span> 
+	<button type="button" class="btn btn-default" aria-label="Left Align">
+	<span class="glyphicon glyphicon-calendar""></span>
+	</button>
 	  </div>
   </div>
   
