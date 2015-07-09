@@ -60,15 +60,15 @@
 		<td><a href="{% url "students_edit" student.id %}">{{ student.first_name }}</td>
 		<td>{{ student.ticket }}</td>
 	  <td>
-		  <div class="btn-group">
-		  <button class="btn btn-default dropdown-toggle" type"button" data-toggle="dropdown">Дія<span class="caret"></span>
-		  </button>
+	<div class="btn-group">
+		<button class="btn btn-default dropdown-toggle" type"button" data-toggle="dropdown">Дія<span class="caret"></span>
+		</button>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="{% url "students_edit" student.id %}">Редагувати Студента</a></li>
 		  <li><a href="{% url "journal" student.id %}">Відвідування</a></li>
 		  <li><a href="{% url "students_delete" student.id %}">Видалити Студента</a></li>
 		</ul>
-	  </div>
+	 </div>
 	</td>
 	</tr>
 	{% endfor %}
