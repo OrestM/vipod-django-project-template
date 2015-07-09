@@ -21,6 +21,7 @@ from students.views.contact_admin import ContactView
 from students.views.students import StudentUpdateView, StudentCreateView, StudentDeleteView
 from students.views.groups import GroupAddView, GroupDeleteView, GroupUpdateView
 from students.views.journal import JournalView
+from students.views.exam import ExamCreateView, ExamUpdateView, ExamDeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 
 urlpatterns = patterns('',
@@ -43,6 +44,9 @@ urlpatterns = patterns('',
 	
 	#Exam
 	url(r'^exam/$', 'students.views.exam.exam_list', name='exam'),
+	url(r'^exam/add/$', ExamCreateView.as_view(), name='exam_add'),
+	url(r'^exam/(?P<pk>\d+)/edit/$', ExamUpdateView.as_view(), name='exam_edit'),
+	url(r'^exam/(?P<pk>\d+)/delete/$', ExamDeleteView.as_view(), name='exam_delete'),
 	
     url(r'^admin/', include(admin.site.urls)),
 	

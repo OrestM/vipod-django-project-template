@@ -5,7 +5,6 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm, ValidationError
 from django.views.generic import UpdateView, CreateView, DeleteView
 
@@ -20,98 +19,6 @@ from ..utils import paginate, get_current_group
 
 from ..models import Student, Group
 
-def students_add(request):
-	# was form posted?
-	if request.method == "POST":
-	  
-		# was form add button clicked?
-		if request.POST.get('add_button') is not None:
-	    
-			# TODO: varidate input from user
-			# errors collection
-			errors = {}
-			# validate student data will go here
-			data = {'middle_name': request.POST.get('middle_name'), 'notes': request.POST.get('notes')}
-			
-			# validate user input
-			first_name = request.POST.get('first_name', '').strip()
-			if not first_name:
-				errors['first_name'] = u"Ім'я є обов'язковим"
-			else:
-				data['first_name'] = first_name
-				
-			last_name = request.POST.get('last_name', '').strip()
-			if not last_name:
-				errors['last_name'] = u"Прізвище є обов'язковим"
-			else:
-				data['last_name'] = last_name
-				
-			birthday = request.POST.get('birthday', '').strip()
-			if not birthday:
-				errors['birthday'] = u"Дата Народження є обов'язковою"
-			else:
-				try:
-					datetime.strptime(birthday, '%Y-%m-%d')
-				except Exeption:
-					errors['birthday'] = u"Введіть коректний формат дати (напр. 1994-08-24)"
-				else:
-					data['birthday'] = birthday
-				
-			ticket = request.POST.get('ticket', '').strip()
-			if not ticket:
-				errors['ticket'] = u"№ білета є обов'язковим"
-			else:
-				data['ticket'] = ticket
-				
-			student_group = request.POST.get('student_group', '').strip()
-			if not student_group:
-				errors['student_group'] = u"Оберіть групу для студента"
-			else:
-				groups = Group.objects.filter(pk=student_group)
-				if len(groups) != 1:
-					errors['student_group'] = u"Оберіть коректну групу"
-				else:
-					data['student_group'] = groups[0]
-				
-			photo = request.FILES.get('photo')
-			if photo:
-				correct_photo = valid_image_minetype(photo) # image photo
-				if correct_image:
-					correct_file_size = valid_image_size(photo) # image size
-					if correct_file_size:
-						data['photo'] = photo
-					else:
-						errors['photo'] = u"Файл завеликий"
-				else:
-					errors['photo'] = u"Виберіть фото яке займає менше 2mb"
-			
-			# message django.contrib.messages 
-			storage = get_messages(request)
-			for message in storage:
-				pass # empty block
-			if errors:
-			# add errors
-				for name_error in errors:
-					messages.add_message(request, messages.INFO, errors[name_error])
-			# end django.contrib.messages 
-			
-			# save studentd
-			if not errors:
-				student = Student(**data)
-				student.save()
-			
-				# redirect user to students list
-				return HttpResponseRedirect(u'%s?status_message=Студента %s %s успішно додано!' % (reverse('home'), data['first_name'], data['last_name']))
-			else:
-				# render from with errors and previous user input
-				return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title'), 'errors': errors})
-		elif request.POST.get('cancel_button') is not None:
-			# redirect to home page on cancel button
-			return HttpResponseRedirect(u'%s?status_message=Додавання студента скасовано' % reverse('home'))
-	else:
-		# initial form render
-		return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title')})
-
 class StudentUpdateForm(ModelForm):	
 	class Meta:
 		model = Student
@@ -123,7 +30,7 @@ class StudentUpdateForm(ModelForm):
 		self.helper = FormHelper(self)
 
 		# set form tag attributes
-		self.helper.form_action = reverse('students_edit',	kwargs={'pk': kwargs['instance'].id})		
+		self.helper.form_action = reverse('students_edit', kwargs={'pk': kwargs['instance'].id})		
 		self.helper.form_method = 'POST'
 		self.helper.form_class = 'form-horizontal'
 
