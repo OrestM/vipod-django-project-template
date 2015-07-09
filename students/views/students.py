@@ -1,5 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
-# новий шмпотр в модулі
+
 from datetime import datetime
 
 from django.shortcuts import render
