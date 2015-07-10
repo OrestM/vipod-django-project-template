@@ -9,7 +9,8 @@
 
 {% block content %}
 
-<a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a> 
+<a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a>
+ 
 <!-- Starts Students Listing -->
 	
   <table class="table table-hover table-striped">
@@ -69,7 +70,7 @@
 		</button>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="{% url "students_edit" student.id %}" class="student-edit-form-link">Редагувати Студента</a></li>
-		  <li><a href="{% url "journal" student.id %}">Відвідування</a></li>
+		  <li><a href="{% url "journal" student.id %}" >Відвідування</a></li>
 		  <li><a href="{% url "students_delete" student.id %}">Видалити Студента</a></li>
 		</ul>
 	 </div>
