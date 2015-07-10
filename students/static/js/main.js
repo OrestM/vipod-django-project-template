@@ -14,14 +14,14 @@ function initJournal() {
 				'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
 			},
 			'beforeSend': function(xhr, settings){
-				indicator.show();
+				indicator.show();				
 			},
 			'error': function(xhr, status, error){
 				alert(error);
-				indicator.hide();
+				indicator.hide();				
 			},
 			'success': function(data, status, xhr){
-				indicator.hide();
+				indicator.hide();				
 			}
 		});
 	});
@@ -64,7 +64,7 @@ function initEditStudentPage() {
 		$.ajax({			
 			'url': link.attr('href'),
 			'dataType': 'html',
-			'type': 'get',
+			'type': 'get',			
 			'success': function(data, status, xhr){
 			
 			// check if we got successfull response from the server
@@ -114,9 +114,11 @@ function initEditStudentForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
+			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
+		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -124,15 +126,19 @@ function initEditStudentForm(form, modal) {
 		// copy form to modal if we found it in server response
 		if (newform.length > 0) {
 			modal.find('.modal-body').append(newform);
-
+						
 			// initialize form fields and buttons
 			initEditStudentForm(newform, modal);
 		} else {
 			// if no form, it means success and we need to reload page
 			// to get updated students list;
 			// reload after 2 seconds, so that user can read success message			
-			setTimeout(function(){location.reload(true);}, 500);
+			setTimeout(function(){location.reload(true);}, 1800);
 			}
+		},
+		'beforeSend': function(data, status, xhr) {
+			var input = $('input', 'textarea').attr('readonly','true');	
+			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
