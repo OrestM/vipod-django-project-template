@@ -110,3 +110,7 @@ class ExamDeleteView(DeleteView):
 	
 	def get_success_url(self):
 		return u'%s?status_message=Іспит успішно видалено!' % reverse ('exam')
+		
+	def post(self, request, *args, **kwargs):
+		if request.POST.get('cancel_button'):
+			return HttpResponseRedirect(u'%s?status_message=Видалення іспиту скасовано!' % reverse ('exam'))
