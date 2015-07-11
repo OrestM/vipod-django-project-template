@@ -19,6 +19,27 @@ from ..utils import paginate, get_current_group
 
 from ..models import Student, Group
 
+def students_list(request):
+	# check if we need to show only one group of students
+	current_group = get_current_group(request)
+	if current_group:
+		students = Student.objects.filter(student_group = current_group)
+	else:
+		# otherwise show all students
+		students = Student.objects.all()
+
+	# try to order student list
+	order_by = request.GET.get('order_by', 'last_name')
+	if order_by in ('last_name', 'first_name', 'ticket'):
+		students = students.order_by(order_by)
+		if request.GET.get('reverse', '') == '1':
+			students = students.reverse()
+			
+	# apply pagination, 3 students per page
+	context = paginate(students, 3, request, {}, var_name='students')
+	
+	return render(request, 'students/students_list.html', context)
+		
 class StudentUpdateForm(ModelForm):	
 	class Meta:
 		model = Student
@@ -73,28 +94,7 @@ class StudentCreateForm(ModelForm):
 			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
 			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
 		)
-				
-def students_list(request):
-	# check if we need to show only one group of students
-	current_group = get_current_group(request)
-	if current_group:
-		students = Student.objects.filter(student_group = current_group)
-	else:
-		# otherwise show all students
-		students = Student.objects.all()
 
-	# try to order student list
-	order_by = request.GET.get('order_by', 'last_name')
-	if order_by in ('last_name', 'first_name', 'ticket'):
-		students = students.order_by(order_by)
-		if request.GET.get('reverse', '') == '1':
-			students = students.reverse()
-			
-	# apply pagination, 3 students per page
-	context = paginate(students, 3, request, {}, var_name='students')
-	
-	return render(request, 'students/students_list.html', context)
-		
 class StudentCreateView(CreateView):
 	model = Student
 	template_name = 'students/students_add.html'
@@ -102,7 +102,7 @@ class StudentCreateView(CreateView):
 
 	def get_success_url(self):
 		return u'%s?status_message=Студента збережено!' % reverse('home')
-			
+				
 class StudentUpdateView(UpdateView):
 	model = Student
 	template_name = 'students/students_edit.html'
@@ -122,3 +122,8 @@ class StudentDeleteView(DeleteView):
 	
 	def get_success_url(self):
 		return u'%s?status_message=Студента успішно видалено!' % reverse ('home')
+	
+	def post(self, request, *args, **kwargs):
+		if request.POST.get('cancel_button'):
+			return HttpResponseRedirect( u'%s?status_message=Видалення студента відмінено!' % reverse('home'))
+		return super(StudentUpdateView, self).post(request, *args, **kwargs)
