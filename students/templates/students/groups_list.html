@@ -5,7 +5,7 @@
 {% block title %}Список Груп{% endblock title %}
 
 {% block content %}
-<a href="{% url "groups_add" %}" class="btn btn-primary">Додати Групу</a>
+<a href="{% url "groups_add" %}" id="group-add-form-link" class="btn btn-primary">Додати Групу</a>
 <!-- Starts Students Listing -->
   
   <table class="table">
@@ -38,15 +38,15 @@
 	{% for group in groups %}
 	<tr>
 	  <td>{{ forloop.counter }}</td>
-	  <td><a href="{% url "groups_edit" group.id %}">{{ group.title }}</td>
-	  <td><a href="{% url "groups_edit" group.id %}">{{ group.leader }}</td>
+	  <td><a href="{% url "groups_edit" group.id %}" class="group-edit-form-link">{{ group.title }}</td>
+	  <td><a href="{% url "groups_edit" group.id %}" class="group-edit-form-link">{{ group.leader }}</td>
 	<td>
 	  <div class="btn-group">
 		<button class="btn btn-default dropdown-toggle" type"button" data-toggle="dropdown">Дія<span class="caret"></span>
 		</button>
 		  <ul class="dropdown-menu" role="menu">
-		    <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
-		    <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
+		    <li><a href="{% url "groups_edit" group.id %}" class="group-edit-form-link">Редагувати</a></li>
+		    <li><a href="{% url "groups_delete" group.id %}" class="group-delete-form-link">Видалити</a></li>
 		  </ul>
 	    </div>
 	  </td>
