@@ -7,7 +7,7 @@
     <meta charset="utf-8"/>
 	<title>Сервіс Обліку Студентів - {% block meta_title %}{% endblock meta_title %}</title>
 	<meta name="description" value="Система Обліку Студентів Навчального Закладу" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	
 	<!-- Include Styles -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -55,11 +55,11 @@
 	  <div class="row" id="sub-header">
 	    <div class="col-xs-12">
 		  <ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" {% if request.path == url_home %} class="active" {% endif %}><a href="{% url "home" %}">Студенти</a></li>
-			<li role="presentation" {% if request.path == url_journal %} class="active" {% endif %}><a href="{% url "journal" %}">Відвідування</a></li>
-			<li role="presentation" {% if request.path == url_groups %} class="active" {% endif %}><a href="{% url "groups" %}">Групи</a></li>
-			<li role="presentation" {% if request.path == url_exam %} class="active" {% endif %}><a href="{% url "exam" %}">Іспити</a></li>
-			<li role="presentation" {% if '/contact-admin' in request.path %} class="active"{% endif %}><a href="{% url "contact_admin" %}">Контакт</a></li>
+			<li role="presentation" {% if request.path == url_home %} {% endif %}><a href="{% url "home" %}" class="active">Студенти</a></li>
+			<li role="presentation" {% if request.path == url_journal %} {% endif %}><a href="{% url "journal" %}" class="active">Відвідування</a></li>
+			<li role="presentation" {% if request.path == url_groups %} {% endif %}><a href="{% url "groups" %}" class="active">Групи</a></li>
+			<li role="presentation" {% if request.path == url_exam %} {% endif %}><a href="{% url "exam" %}" class="active">Іспити</a></li>
+			<li role="presentation" {% if '/contact-admin' in request.path %} {% endif %}><a href="{% url "contact_admin" %}" class="active">Контакт</a></li>
 		  </ul>
 		</div>
 	  </div>
