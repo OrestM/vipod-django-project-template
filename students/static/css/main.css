@@ -42,3 +42,12 @@ th.day-header {
 #ajax-progress-indicator{
 	display: none;
 }
+.btn-back{
+	margin-left: 5px;
+	margin-top: 5px;
+	border-radius: 5px;	
+}
+.btn-forward{
+	margin-left: 5px;	
+	border-radius: 5px;	
+}
