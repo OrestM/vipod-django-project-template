@@ -41,7 +41,7 @@
         $(document).ajaxComplete(function () {
             self.setTimeout(function (){
                 $(loadingElement).hide();
-            }, 4000);
+            }, 1000);
         });
     };
 
