@@ -23,6 +23,7 @@
   </head>
   
   <body>
+  <button onclick="goBack()" class="btn-back">Back</button><button onclick="goForward()" class="btn-forward">Forward</button>
     <div id="container"> 
 	
 	<!-- Start Container -->
@@ -30,9 +31,9 @@
 	
 	  <!-- Start Header -->
 	  <div class="row" id="header">
-	  
+				
 	    <!-- Logo -->
-		<div class="col-xs-8">
+		<div class="col-xs-8">		
 		  <h1>Сервіс Обліку Студентів</h1>
 		</div>
 		
@@ -55,16 +56,17 @@
 	  <div class="row" id="sub-header">
 	    <div class="col-xs-12">
 		  <ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" {% if request.path == url_home %} {% endif %}><a href="{% url "home" %}" class="active">Студенти</a></li>
-			<li role="presentation" {% if request.path == url_journal %} {% endif %}><a href="{% url "journal" %}" class="active">Відвідування</a></li>
-			<li role="presentation" {% if request.path == url_groups %} {% endif %}><a href="{% url "groups" %}" class="active">Групи</a></li>
-			<li role="presentation" {% if request.path == url_exam %} {% endif %}><a href="{% url "exam" %}" class="active">Іспити</a></li>
-			<li role="presentation" {% if '/contact-admin' in request.path %} {% endif %}><a href="{% url "contact_admin" %}" class="active">Контакт</a></li>
+			<li role="presentation" {% if request.path == url.home %}  class="active" {% endif %}><a href="{% url "home" %}" class="content-url">Студенти</a></li>
+			<li role="presentation" {% if request.path == url.journal %}  class="active" {% endif %}><a href="{% url "journal" %}" class="content-url">Відвідування</a></li>
+			<li role="presentation" {% if request.path == url.groups %}  class="active" {% endif %}><a href="{% url "groups" %}" class="content-url">Групи</a></li>
+			<li role="presentation" {% if request.path == url.exam %}  class="active" {% endif %}><a href="{% url "exam" %}" class="content-url">Іспити</a></li>
+			<li role="presentation" {% if request.path == url.contact_admin %}  class="active" {% endif %}><a href="{% url "contact_admin" %}" class="content-url">Контакт</a></li>
 		  </ul>
 		</div>
 	  </div>
 	  </div>
 </div>
+
 <p><span id="status" ></span></p>
 	  <!-- End SubHeader -->
 	  
@@ -85,6 +87,7 @@
 		
 		  </div>
 		</div>
+		
 		<!-- End Content Columns -->
 		
 		<!-- Start Footer -->
