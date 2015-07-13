@@ -70,8 +70,8 @@
 		</button>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="{% url "students_edit" student.id %}" class="student-edit-form-link">Редагувати Студента</a></li>
-		  <li><a href="{% url "journal" student.id %}" id="student-journal-form-link">Відвідування</a></li>
-		  <li><a href="{% url "students_delete" student.id %}" class="student-journal-form-link">Видалити Студента</a></li>
+		  <li><a href="{% url "journal" student.id %}" >Відвідування</a></li>
+		  <li><a href="{% url "students_delete" student.id %}" class="student-delete-form-link">Видалити Студента</a></li>
 		</ul>
 	 </div>
 	</td>
