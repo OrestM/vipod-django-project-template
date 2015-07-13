@@ -806,7 +806,14 @@ function initDeleteExamForm(form, modal) {
 	});
 }
 
-
+function goBack() {
+    window.history.back();
+}
+ 
+function goForward() {
+    window.history.forward();
+}
+ 
 $(document).ready(function() {
 	initJournal();
 	initGroupSelector();
