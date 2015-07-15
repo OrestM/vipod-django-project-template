@@ -1,7 +1,6 @@
-function initJournal() {
-	var indicator = $('#ajax-progress-indicator'); 
-	
-	$('.day-box input[type="checkbox"]').click(function(event) {
+function initJournal() {		
+	$(document).on("click", '.day-box input[type="checkbox"]', function(event) {
+		var indicator = $('#ajax-progress-indicator'); 
 		var box = $(this);
 		$.ajax(box.data('url'), {
 			'type': 'POST',
@@ -18,10 +17,10 @@ function initJournal() {
 			},
 			'error': function(xhr, status, error){
 				alert(error);
-				indicator.hide();				
+				indicator.hide();
 			},
 			'success': function(data, status, xhr){
-				indicator.hide();				
+				indicator.hide();
 			}
 		});
 	});
@@ -59,7 +58,7 @@ function initDateFields() {
 }
 
 function initEditStudentPage() {
-	$('a.student-edit-form-link').click(function(event){
+	$(document).on("click", 'a.student-edit-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -114,11 +113,9 @@ function initEditStudentForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -138,13 +135,12 @@ function initEditStudentForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
 function initAddStudentPage() {
-	$('a#student-add-form-link').click(function(event){
+	$(document).on("click", 'a#student-add-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -199,11 +195,9 @@ function initAddStudentForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -223,13 +217,12 @@ function initAddStudentForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
 function initDeleteStudentPage() {
-	$('a.student-delete-form-link').click(function(event){
+	$(document).on("click", 'a.student-delete-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -275,11 +268,9 @@ function initDeleteStudentForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -299,14 +290,13 @@ function initDeleteStudentForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
 
 function initAddGroupPage() {
-	$('a#group-add-form-link').click(function(event){
+	$(document).on("click", 'a#group-add-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -362,7 +352,6 @@ function initAddGroupForm(form, modal) {
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -382,13 +371,12 @@ function initAddGroupForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
 function initEditGroupPage() {
-	$('a.group-edit-form-link').click(function(event){
+	$(document).on("click", 'a.group-edit-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -440,11 +428,9 @@ function initEditGroupForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -464,13 +450,12 @@ function initEditGroupForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
 function initDeleteGroupPage() {
-	$('a.group-delete-form-link').click(function(event){
+	$(document).on("click", 'a.group-delete-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -522,11 +507,9 @@ function initDeleteGroupForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -546,13 +529,12 @@ function initDeleteGroupForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
 function initAddExamPage() {
-	$('a#exam-add-form-link').click(function(event){
+	$(document).on("click", 'a#exam-add-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -607,11 +589,9 @@ function initAddExamForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -631,13 +611,12 @@ function initAddExamForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
 function initEditExamPage() {
-	$('a.exam-edit-form-link').click(function(event){
+	$(document).on("click", 'a.exam-edit-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -692,11 +671,9 @@ function initEditExamForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -716,13 +693,12 @@ function initEditExamForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
 function initDeleteExamPage() {
-	$('a.exam-delete-form-link').click(function(event){
+	$(document).on("click", 'a.exam-delete-form-link', function(){
 		var link = $(this);
 		$.ajax({			
 			'url': link.attr('href'),
@@ -777,11 +753,9 @@ function initDeleteExamForm(form, modal) {
 		'error': function(){
 			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
 			return false;
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
 		'success': function(data, status, xhr) {
 		var html = $(data), newform = html.find('#content-column form');
-		modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 
 		// copy alert to modal window
 		modal.find('.modal-body').html(html.find('.alert'));
@@ -801,18 +775,92 @@ function initDeleteExamForm(form, modal) {
 		},
 		'beforeSend': function(data, status, xhr) {
 			var input = $('input', 'textarea').attr('readonly','true');	
-			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		}
 	});
 }
 
-function goBack() {
-    window.history.back();
+function updatePageContext() {	
+	var url = window.location.href;  
+	$.ajax({
+		'url': url,
+		'dataType': 'html',
+		'type': 'get',
+		'success': function(data, status, xhr){
+			
+			// check if we got successfull response from the server
+			if (status != 'success') {
+				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				return false;
+			}
+			
+			// update modal window with arrived content from the server
+			var table = $('.table'), newpage = $(data), newtable = newpage.find('.table');
+			table.html(newtable);			
+		},
+
+		'error': function(){
+			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			return false;
+		}
+	});
+	return false;
 }
- 
-function goForward() {
-    window.history.forward();
+
+
+function ajaxFunctional(url) {
+        $.ajax({
+            'url': url,
+            'dataType': 'html',
+            'type': 'get',
+            'success': function(newdata, status, xhr){
+				
+                // check if we got successfull response from the server    
+                if (status != 'success') {
+                    alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+                    return false;
+                }
+                var html = $(newdata), page = $(html.find("#content-column")), body = $('#content-column');
+                body.html(page);
+				var activeBar = $('.nav-tabs');
+				activeBar.find('li').removeClass('active');
+				var realActiveBar = $(newdata).find('.nav-tabs').find('.active');
+				for (var i = 0; i<5; i++) {
+					some = activeBar.find('li:eq('+i+')');
+					if (some.text()==realActiveBar.text()) {
+						some.addClass('active');
+					}
+				}
+
+				if (!url.contains("localhost"))
+				{
+					history.pushState(null, document.title, url);
+				}
+
+
+				window.onpopstate = function() {
+			  		var modal = $('#myModal');
+			  		modal.modal('hide');
+
+			  		var url2 = window.location.href; 
+			  		ajaxFunctional(url2);
+				};
+            },
+
+            'error': function(){
+                alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+                return false;
+            }
+      });	
 }
+
+function UpdateAllPage() {
+	$(document).on("click", "a.content-pagination, a.content-sorting, a.content-url", function() {
+        var link = $(this);
+        ajaxFunctional(link.attr('href'));
+        return false;
+    });
+}
+
  
 $(document).ready(function() {
 	initJournal();
@@ -827,4 +875,5 @@ $(document).ready(function() {
 	initAddExamPage();
 	initEditExamPage();
 	initDeleteExamPage();
+	UpdateAllPage();
 });
