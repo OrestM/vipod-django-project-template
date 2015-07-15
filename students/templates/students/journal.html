@@ -84,5 +84,6 @@
 {% with object_list=students %}
   {% include "students/pagination.html" %}
 {% endwith %}
+{% block pagination %}{% endblock pagination %}
 
 {% endblock content %}
