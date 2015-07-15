@@ -13,23 +13,29 @@
     <thead>
 	  <tr>
 		<th>
-		<a href="{% url "groups" %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		  <a class="content-sorting" href="{% url "groups" %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
 		#
 		{% if order_by == 'id' and reverse != '1' %}&uarr;
 		{% elif order_by == 'id' and reverse == '1' %}&darr;
-		{% endif %}</a></th>
+		{% endif %}</a>
+		</th>
+		
 		<th>
-		<a href="{% url "groups" %}?order_by=title{% if order_by == 'title' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		  <a class="content-sorting" href="{% url "groups" %}?order_by=title{% if order_by == 'title' and reverse != '1' %}&amp;reverse=1{% endif %}">
 		Назва 
 		{% if order_by == 'title' and reverse != '1' %}&uarr;
 		{% elif order_by == 'title' and reverse == '1' %}&darr;
-		{% endif %}</a></th>
+		{% endif %}</a>
+		</th>
+		
 		<th>
-		<a href="{% url "groups" %}?order_by=leader{% if order_by == 'leader' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		  <a class="content-sorting" href="{% url "groups" %}?order_by=leader{% if order_by == 'leader' and reverse != '1' %}&amp;reverse=1{% endif %}">
 		Староста
 		{% if order_by == 'leader' and reverse != '1' %}&uarr;
 		{% elif order_by == 'leader' and reverse == '1' %}&darr;
-		{% endif %}</a></th>
+		{% endif %}</a>
+		</th>
+		
 		<th>Дії</th>
 	  </tr>
 	</thead>
