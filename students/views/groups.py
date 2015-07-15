@@ -104,6 +104,7 @@ class GroupUpdateView(BaseGroupFormView, UpdateView):
 class GroupDeleteView(DeleteView):
 	model = Group
 	template_name = 'students/groups_confirm_delete.html'
-	
+		
 	def get_success_url(self):
 		return u'%s?status_message=Групу успішно видалено!' % reverse ('groups')
+	

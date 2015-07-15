@@ -7,7 +7,11 @@
 
 {% block title %}Додати Студента{% endblock title %}
 
-
+{% block status_message %}
+  {% if form.errors %}
+  <div class="alert alert-warning" role="alert">Будь-ласка, виправте наступні помилки</div>
+  {% endif %}
+{% endblock status_message %}
 
 {% block content %}
 {% crispy form %}
