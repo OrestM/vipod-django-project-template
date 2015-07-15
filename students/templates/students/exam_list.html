@@ -16,39 +16,44 @@
     <thead>
 	  <tr>
 		<th>
-		<a href="{% url "exam" %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		  <a class="content-sorting" href="{% url "exam" %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
 		№
 		{% if order_by == 'id' and reverse != '1' %}&uarr;
 		{% elif order_by == 'id' and reverse == '1' %}&darr;
-		{% endif %}</a></th>
+		{% endif %}</a>
+		</th>
 		
 		<th>
-		<a href="{% url "exam" %}?order_by=name{% if order_by == 'name' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		  <a class="content-sorting" href="{% url "exam" %}?order_by=name{% if order_by == 'name' and reverse != '1' %}&amp;reverse=1{% endif %}">
 		Назва предмета
 		{% if order_by == 'name' and reverse != '1'%}&uarr;
 		{% elif order_by == 'name' and reverse == '1' %}&darr;
-		{% endif %}</a></th>
+		{% endif %}</a>
+		</th>
 		
 		<th>
-		<a href="{% url "exam" %}?order_by=teacher{% if order_by == 'teacher' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		  <a class="content-sorting" href="{% url "exam" %}?order_by=teacher{% if order_by == 'teacher' and reverse != '1' %}&amp;reverse=1{% endif %}">
 		Викладач
 		{% if order_by == 'teacher' and reverse != '1' %}&uarr;
 		{% elif order_by == 'teacher' and reverse == '1' %}&darr;
-		{% endif %}</a></th>
+		{% endif %}</a>
+		</th>
 			
 		<th>
-		<a href="{% url "exam" %}?order_by=data_time{% if order_by == 'data_time' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		  <a class="content-sorting" href="{% url "exam" %}?order_by=data_time{% if order_by == 'data_time' and reverse != '1' %}&amp;reverse=1{% endif %}">
 		Дата і Час
 		{% if order_by == 'data_time' and reverse != '1'%}&uarr;
 		{% elif order_by == 'data_time' and reverse == '1' %}&darr;
-		{% endif %}</a></th>
+		{% endif %}</a>
+		</th>
 			
 		<th>
-		<a href="{% url "exam" %}?order_by=group{% if order_by == 'group' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		  <a class="content-sorting" href="{% url "exam" %}?order_by=group{% if order_by == 'group' and reverse != '1' %}&amp;reverse=1{% endif %}">
 		Група
 		{% if order_by == 'group' and reverse != '1' %}&uarr;
 		{% elif order_by == 'group' and reverse == '1' %}&darr;
-		{% endif %}</a></th>
+		{% endif %}</a>
+		</th>
 	  </tr>
 	</thead>
 	{% endwith %}
