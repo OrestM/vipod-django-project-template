@@ -110,12 +110,7 @@ class StudentUpdateView(UpdateView):
 		
 	def get_success_url(self):
 		return u'%s?status_message=Студента успішно збережено!' % reverse ('home')
-		
-	def post(self, request, *args, **kwargs):
-		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect( u'%s?status_message=Редагування студента відмінено!' % reverse('home'))
-		return super(StudentUpdateView, self).post(request, *args, **kwargs)
-		
+			
 class StudentDeleteView(DeleteView):
 	model = Student
 	template_name = 'students/students_confirm_delete.html'
