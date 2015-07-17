@@ -812,25 +812,25 @@ function ajaxFunctional(url) {
             'url': url,
             'dataType': 'html',
             'type': 'get',
-            'success': function(newdata, status, xhr){
+            'success': function(data, status, xhr){
 				
                 // check if we got successfull response from the server    
                 if (status != 'success') {
                     alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
                     return false;
                 }
-                var html = $(newdata), page = $(html.find("#content-column")), body = $('#content-column');
+                var html = $(data), page = $(html.find("#content-column")), body = $('#content-column');
                 body.html(page);
 				var activeBar = $('.nav-tabs');
 				activeBar.find('li').removeClass('active');
-				var realActiveBar = $(newdata).find('.nav-tabs').find('.active');
+				var realActiveBar = $(data).find('.nav-tabs').find('.active');
 				for (var i = 0; i<5; i++) {
 					some = activeBar.find('li:eq('+i+')');
 					if (some.text()==realActiveBar.text()) {
 						some.addClass('active');
 					}
 				}
-
+				
 				if (!url.contains("localhost"))
 				{
 					history.pushState(null, document.title, url);
