@@ -9,6 +9,7 @@ sshkey.pub
 db.py
 email.py
 demo_data.json
+studentsdb.log
 .pyc
 *.py~
 *.txt~
