@@ -47,11 +47,9 @@ class BaseGroupFormView(object):
     def post(self, request, *args, **kwargs):
         # handle cancel button
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(reverse('exam') +
-                u'?status_message=Зміни скасовано.')
+            return HttpResponseRedirect(reverse('exam') + u'?status_message=Зміни скасовано.')
         else:
-            return super(BaseGroupFormView, self).post(
-                request, *args, **kwargs)
+            return super(BaseGroupFormView, self).post(request, *args, **kwargs)
 	
 class ExamForm(ModelForm):
     class Meta:
