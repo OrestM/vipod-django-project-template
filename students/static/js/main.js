@@ -854,9 +854,9 @@ function ajaxFunctional(url) {
 }
 
 function UpdateAllPage() {
-	$(document).on("click", "a.content-pagination, a.content-sorting, a.content-url", function() {
+	$(document).on("click", "a.content-pagination, a.content-sorting, a.content-url", function(evnt) {
         var link = $(this);
-        ajaxFunctional(link.attr('href'));
+        ajaxFunctional(link.attr('href'));		
         return false;
     });
 }
