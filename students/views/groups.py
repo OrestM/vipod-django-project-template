@@ -37,19 +37,7 @@ def groups_list(request):
 	context = paginate(groups, 3, request, {}, var_name='groups')
 	
 	return render(request, 'students/groups_list.html', context)
-	
-class BaseGroupFormView(object):
 
-    def get_success_url(self):
-        return u'%s?status_message=Зміни успішно збережено!' % reverse('groups')
-
-    def post(self, request, *args, **kwargs):
-        # handle cancel button
-        if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(reverse('groups') + u'?status_message=Зміни скасовано.')
-        else:
-            return super(BaseGroupFormView, self).post(request, *args, **kwargs)
-	
 class GroupForm(ModelForm):
     class Meta:
 		model = Group
@@ -91,20 +79,30 @@ class GroupForm(ModelForm):
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
 	
+class BaseGroupFormView(object):
+
+    def get_success_url(self):
+        return u'%s?status_message=Зміни успішно збережено!' % reverse('groups')
+
+    def post(self, request, *args, **kwargs):
+        # handle cancel button
+        if request.POST.get('cancel_button'):
+            return HttpResponseRedirect(reverse('groups') + u'?status_message=Зміни скасовано.')
+        else:
+            return super(BaseGroupFormView, self).post(request, *args, **kwargs)
+	
+	
 class GroupAddView(BaseGroupFormView, CreateView):
     model = Group
     form_class = GroupForm
     template_name = 'students/groups_form.html'
-		
+				
 class GroupUpdateView(BaseGroupFormView, UpdateView):
     model = Group
     form_class = GroupForm
     template_name = 'students/groups_form.html'
-		
-class GroupDeleteView(DeleteView):
+	
+class GroupDeleteView(BaseGroupFormView, DeleteView):
 	model = Group
 	template_name = 'students/groups_confirm_delete.html'
-		
-	def get_success_url(self):
-		return u'%s?status_message=Групу успішно видалено!' % reverse ('groups')
 	
