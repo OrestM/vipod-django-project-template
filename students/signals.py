@@ -57,7 +57,7 @@ def log_exam_updated_added_event(sender, **kwargs):
 		
 @receiver(post_delete, sender=Exam)
 def log_exam_delete_event(sender, **kwargs):
-	"""	Writes information about newly delete group info log file """
+	"""	Writes information about newly delete exam info log file """
 	logger = logging.getLogger(__name__)
 	
 	exam = kwargs['instance']
