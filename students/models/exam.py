@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from django.db import models
 
 # Create your models here.
@@ -33,4 +32,4 @@ class Exam(models.Model):
 		
 	
 	def __unicode__(self):
-		return u"%s %s %s" % (self.name, self.data_time, self.teacher)
+		return u"%s %s %s" % (self.name, self.teacher, self.group)
