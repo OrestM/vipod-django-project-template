@@ -1,25 +1,23 @@
 ﻿# -*- coding: utf-8 -*-
+import logging
+
 from django.shortcuts import render
 from django import forms
 from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.contrib import messages
-from django.contrib.messages import get_messages
+#from django.contrib import messages
+#from django.contrib.messages import get_messages
 
 from studentsdb.settings import ADMIN_EMAIL
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
-from django.views.generic.edit import FormView
+#from django.views.generic.edit import FormView
 
-class ContactForm(forms.Form):
-	from_email = forms.EmailField(label=u"Ваша Емейл Адреса")
-	subject = forms.CharField(label=u"Заголовок листа", max_length=128)
-	message = forms.CharField(label=u"Текст повідомлення", widget=forms.Textarea)
-	
-	def send_email(self):
-		pass
+class ContactForm(forms.Form):	
+	#def send_email(self):
+	#	pass
 	
 	def __init__(self, *args, **kwargs):
 		# call original initializator
@@ -42,13 +40,57 @@ class ContactForm(forms.Form):
 		# form buttons
 		self.helper.add_input(Submit('send_button', u'Надіслати'))
 	
+	from_email = forms.EmailField(
+	label=u"Ваша Емейл Адреса")
+	
+	subject = forms.CharField(
+	label=u"Заголовок листа",
+	max_length=128)
+	
+	message = forms.CharField(
+	label=u"Текст повідомлення", 
+	widget=forms.Textarea)
+
+def contact_admin(request):
+    # check if form was posted
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ContactForm(request.POST)
+
+        # check whether user data is valid:
+        if form.is_valid():
+            # send email
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            from_email = form.cleaned_data['from_email']
+
+            try:
+                send_mail(subject, message, from_email, [ADMIN_EMAIL])
+            except Exception:
+                message = u'Під час відправки листа виникла непередбачувана ' \
+                    u'помилка. Спробуйте скористатись даною формою пізніше.'
+                logger = logging.getLogger(__name__)
+                logger.exception(message)
+            else:
+                message = u'Повідомлення успішно надіслане!'
+
+            # redirect to same contact page with success message
+            return HttpResponseRedirect(
+                u'%s?status_message=%s' % (reverse('contact_admin'), message))
+
+    # if there was not POST render blank form
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact_admin/form.html', {'form': form})
+"""	
 class ContactView(FormView):
 	template_name = 'contact_admin/form.html'
 	form_class = ContactForm
 	success_url = '/email-sent/'
 	
 	def form_valid(self, form):
-		"""This method is called for valid data"""
+		# This method is called for valid data
 		from_email = form.cleaned_data['from_email']
 		subject = form.cleaned_data['subject'] 
 		message = form.cleaned_data['message'] 
@@ -59,3 +101,4 @@ class ContactView(FormView):
    			pass
 		messages.add_message(self.request, messages.INFO, u'Повідомлення відправлено.')
 		return super(ContactView, self).form_valid(form)
+"""
