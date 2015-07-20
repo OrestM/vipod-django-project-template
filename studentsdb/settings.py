@@ -157,7 +157,7 @@ LOGGING = {
 			'handlers': ['console', 'file'],
 			'level': 'INFO',
 		},
-		'ContactView.as_view()': {
+		'students.views.contact_admin': {
 			'handlers': ['console', 'file'],
 			'level': 'INFO',
 		}
