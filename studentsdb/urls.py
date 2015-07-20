@@ -17,12 +17,14 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-from students.views.contact_admin import ContactView
+#from students.views.contact_admin import ContactView
 from students.views.students import StudentUpdateView, StudentCreateView, StudentDeleteView
 from students.views.groups import GroupAddView, GroupDeleteView, GroupUpdateView
 from students.views.journal import JournalView
 from students.views.exam import ExamCreateView, ExamUpdateView, ExamDeleteView
 from django.http import HttpResponse, HttpResponseRedirect
+
+from .settings import MEDIA_ROOT, DEBUG
 
 urlpatterns = patterns('',
 	# Students urls
@@ -51,8 +53,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 	
 	# Contact Admin Form
-	url(r'^contact-admin/$', ContactView.as_view(), name='contact_admin'),
-	url(r'^', ContactView.as_view(), name='email-sent'),
+	url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin', name='contact_admin'),
+	#url(r'^contact-admin/$', ContactView.as_view(), name='contact_admin'),
+	#url(r'^', ContactView.as_view(), name='email-sent'),
 	
 	
 	#This if forgot password
