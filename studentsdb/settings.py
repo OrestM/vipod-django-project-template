@@ -102,7 +102,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 # Portal url is in context_pocessors.py
 # PORTAL_URL = 'http://localhost:8000'
 
@@ -111,9 +112,6 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("dj
 TEMPLATE_DIRS = (
 	'C:/data/work/virtualenvs/studentsdb/src/studentsdb/students/templates/students',
 )
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 
 from .email import *
 
