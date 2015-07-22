@@ -8,8 +8,8 @@ from django.forms import ModelForm
 from django.views.generic import UpdateView, CreateView, DeleteView
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
-from crispy_forms.bootstrap import FormActions
+from crispy_forms.layout import Submit, Layout, Field
+from crispy_forms.bootstrap import FormActions, AppendedText
 
 from django.contrib.messages import get_messages
 from django.contrib import messages
@@ -38,7 +38,7 @@ def exam_list(request):
 	
 	return render(request, 'students/exam_list.html', context)
 
-class BaseGroupFormView(object):
+class BaseExamFormView(object):
 
     def get_success_url(self):
         return u'%s?status_message=Зміни успішно збережено!' \
@@ -49,7 +49,7 @@ class BaseGroupFormView(object):
         if request.POST.get('cancel_button'):
             return HttpResponseRedirect(reverse('exam') + u'?status_message=Зміни скасовано.')
         else:
-            return super(BaseGroupFormView, self).post(request, *args, **kwargs)
+            return super(BaseExamFormView, self).post(request, *args, **kwargs)
 	
 class ExamForm(ModelForm):
     class Meta:
@@ -87,28 +87,24 @@ class ExamForm(ModelForm):
         else:
             submit = Submit('save_button', u'Зберегти',
                 css_class="btn btn-primary")
-        self.helper.layout[-1] = FormActions(
-            submit,
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
-        )
+        self.helper.layout = Layout(
+			Field('name', css_class='input-sm-10'),
+			Field('teacher', css_class='input-sm-10'),
+			AppendedText('data_time', '<button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='datet'),
+			Field('group', css_class='input-sm-10'),
+			FormActions(submit,Submit('cancel_button', u'Скасувати', css_class="btn btn-link"))
+		)
 	
-class ExamCreateView(BaseGroupFormView, CreateView):
+class ExamCreateView(BaseExamFormView, CreateView):
     model = Exam
     form_class = ExamForm
     template_name = 'students/exam_add.html'
 	
-class ExamUpdateView(BaseGroupFormView, UpdateView):
+class ExamUpdateView(BaseExamFormView, UpdateView):
     model = Exam
     form_class = ExamForm
     template_name = 'students/exam_edit.html'
 	
-class ExamDeleteView(DeleteView):
+class ExamDeleteView(BaseExamFormView, DeleteView):
 	model = Exam
 	template_name = 'students/exam_confirm_delete.html'
-	
-	def get_success_url(self):
-		return u'%s?status_message=Іспит успішно видалено!' % reverse ('exam')
-		
-	def post(self, request, *args, **kwargs):
-		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect(u'%s?status_message=Видалення іспиту скасовано!' % reverse ('exam'))
