@@ -9,8 +9,8 @@ from django.forms import ModelForm, ValidationError
 from django.views.generic import UpdateView, CreateView, DeleteView
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
-from crispy_forms.bootstrap import FormActions
+from crispy_forms.layout import Submit, Layout, Field
+from crispy_forms.bootstrap import FormActions, AppendedText
 
 from .validation import valid_image_minetype, valid_image_size
 from django.contrib.messages import get_messages
@@ -62,9 +62,17 @@ class StudentUpdateForm(ModelForm):
 		self.helper.field_class = 'col-sm-10'
 		
  		# add buttons
-		self.helper.layout[-1] = FormActions(
-			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+		self.helper.layout = Layout(
+			Field('first_name', css_class='input-sm-10'),
+			Field('last_name', css_class='input-sm-10'),
+			Field('middle_name', css_class='input-sm-10'),
+			AppendedText('birthday', '<button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='datet'),			
+			Field('photo', css_class='input-sm-10'),
+			Field('ticket', css_class='input-sm-10'),
+			Field('student_group', css_class='input-sm-10'),
+			Field('notes',rows=3),
+			FormActions(Submit('add_button',u'Зберегти',css_class="btn btn-primary"),
+			Submit('cancel_button',u'Скасувати',css_class="btn btn-link"))
 		)
 		
 class StudentCreateForm(ModelForm):
@@ -90,11 +98,19 @@ class StudentCreateForm(ModelForm):
 		self.helper.field_class = 'col-sm-10'
 		
  		# add buttons
-		self.helper.layout[-1] = FormActions(
-			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+		self.helper.layout = Layout(
+			Field('first_name', css_class='input-sm=10'),
+			Field('last_name', css_class='input-sm-10'),
+			Field('middle_name', css_class='input-sm-10'),
+			AppendedText('birthday', '<button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='date'),
+			Field('photo', css_class='input-sm-10'),
+			Field('ticket', css_class='input-sm-10'),
+			Field('student_group', css_class='input-sm-10'),
+			Field('notes',rows=3),
+			FormActions(Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
+			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"))
 		)
-
+			
 class StudentCreateView(CreateView):
 	model = Student
 	template_name = 'students/students_add.html'
