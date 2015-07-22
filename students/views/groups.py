@@ -2,11 +2,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from django.views.generic import DeleteView, UpdateView, CreateView
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import FormActions
 
 from django.contrib.messages import get_messages
@@ -74,10 +74,12 @@ class GroupForm(ModelForm):
         else:
             submit = Submit('save_button', u'Зберегти',
                 css_class="btn btn-primary")
-        self.helper.layout[-1] = FormActions(
-            submit,
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
-        )
+        self.helper.layout = Layout(
+			Field('title', css_class='input-sm-10'),
+			Field('leader', css_class='input-sm-10'),
+			Field('notes', row=3),
+			FormActions(submit,Submit('cancel_button', u'Скасувати', css_class="btn btn-link"))
+		)
 	
 class BaseGroupFormView(object):
 
@@ -105,4 +107,9 @@ class GroupUpdateView(BaseGroupFormView, UpdateView):
 class GroupDeleteView(BaseGroupFormView, DeleteView):
 	model = Group
 	template_name = 'students/groups_confirm_delete.html'
+	
+	def post(self, request, *args, **kwargs):
+		if request.POST.get('cancel_button'):
+			return HttpResponseRedirect( u'%s?status_message=Видалення групи відмінено!' % reverse('groups'))
+		return super(GroupForm, self).post(request, *args, **kwargs)
 	
