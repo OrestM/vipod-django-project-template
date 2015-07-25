@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+  <head>
+    <meta charset="utf-8"/>
+	<title>Сервіс Обліку Студентів</title>
+	<meta name="description" value="Система Обліку Студентів Навчального Закладу" />
+			
+	<!-- <style type="text/css">.col-xs-12, .col-xs-4, .col-xs-8 {border:1px solid red;}</style> -->
+	<link rel="stylesheet" href="./css/main1.css">
+  </head>
+  
+  <body>
+    
+	<!-- Start Container -->
+	<div>
+	
+	  <!-- Start Header -->
+	  <div class="header">
+	  
+	    <!-- Logo -->
+		<div class="row">
+		  <h1>Сервіс Обліку Студентів</h1>
+		</div>
+		
+		<!-- Groups Selector -->
+		<div class="row">
+			<strong>Група:</strong>
+			<select>
+			  <option value="">Усі Студенти</option>
+			  <option value="">МтМ - 21, Орест Муха (№ 254)</option>
+			  <option value="">МтМ - 22, Корост Андрій (№ 2123)</option>
+			</select>
+		</div>
+	  </div>
+	  <!-- End Header -->
+	  
+	  <!-- Start SubHeader -->
+	  <div>
+	    <div>
+		  <ul class="head">
+		    <li><a href="#" class="active">Студенти</a></li>
+			<li><a href="#">Відвідування</a></li>
+			<li><a href="#">Групи</a></li>
+		   </ul><hr />
+		</div>
+	  </div>
+	  <!-- End SubHeader -->
+	  
+	  <!-- Start Main Page Content -->
+	  <div>
+	  
+	    <div>
+		  
+		  <!-- Status Message -->
+		  <div class="change">Зміни скасовано.</div>
+		  
+		  <h2>База Студентів</h2>
+		  
+		  <!-- Add Student Buttom -->
+		  <button type="submit" class="btn">Додати Студента</button>
+		  
+		  <div>
+		  <!-- Starts Students Listing -->
+		  <table class="table">
+		    <thead class="thead">
+			  <tr>
+			    <th><a href="">№</a></th>
+				<th>Фото</th>
+				<th><a href="">Прізвище &uarr;</th>
+				<th><a href="#">Ім'я</a></th>
+				<th><a href="#">№ Білету</a></th>
+				<th>Дії</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+			    <td>1</td>
+				<td><img src="./img/pin.png" height="30" width="30"/></td>
+				<td><a title="Редагувати" href="#">Корост</a></td>
+				<td><a title="Редагувати" href="#">Андрій</td>
+				<td>2123</td>
+				<td>
+				  <div>				  
+				    <button class="btn btn-default">Дія	<select class="select">
+					  <option><a href="#">Відвідування</a></option>
+					  <option><a href="#">Редагувати</a></option>
+					  <option><a href="#">Видалити</a></option>
+					  </button>
+					</select>			
+				  </td>
+			  <tr>
+			    <td>2</td>
+				<td><img height="30" width="30" src="./img/pin.png" /></td>
+				<td><a title="Редагувати" href="#">Корпюк</a></td>
+				<td><a title="Редагувати" href="#">Роман</td>
+				<td>215</td>
+				<td>
+				  <div>
+				    <button class="btn btn-default">Дія	<select class="select">
+					  <option><a href="#">Відвідування</a></option>
+					  <option><a href="#">Редагувати</a></option>
+					  <option><a href="#">Видалити</a></option>
+					  </button>
+					</select>	
+				  </td>	
+			  <tr>
+			    <td>3</td>
+				<td><img height="30" width="30" src="./img/pin.png" /></td>
+				<td><a title="Редагувати" href="#">Гриців</a></td>
+				<td><a title="Редагувати" href="#">Віктор</td>
+				<td>28</td>
+				<td>
+				  <div>
+				   <button class="btn btn-default">Дія	<select class="select">
+					  <option><a href="#">Відвідування</a></option>
+					  <option><a href="#">Редагувати</a></option>
+					  <option><a href="#">Видалити</a></option>
+					  </button>
+					</select>	
+				  </div>
+				</td>
+			  </tr>
+			  </tr>
+			  </tr>
+			</tbody>
+		  </table>
+		  <nav>
+		    <ul class="paginate">
+			  <li><a href="#">&laquo;</a></li>
+			  <li><a href="#">1</a></li>
+			  <li class="activate"><a href="#">2</a></li>
+			  <li><a href="#">3</a></li>
+			  <li><a href="#">4</a></li>
+			  <li><a href="#">5</a></li>
+			  <li><a href="#">&raquo;</a></li>
+			</ul>
+		  </nav>
+		  <!-- End Students Listing -->
+		</div>
+		
+	  </div>
+	  <!-- End Main Page Content -->
+	  
+	  <!-- Start Footer -->
+	  <div>
+	    <div class="footer">
+		  &copy; 2014 Сервіс Обліку Студентів
+		</div>
+	  </div>
+	  <!-- End Footer -->
+	  
+	</div>
+	<!-- End Container -->
+  </body>
+ </html>
