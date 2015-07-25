@@ -10,7 +10,7 @@ from django.views.generic import UpdateView, CreateView, DeleteView
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
-from crispy_forms.bootstrap import FormActions, AppendedText
+from crispy_forms.bootstrap import FormActions, PrependedText
 
 from .validation import valid_image_minetype, valid_image_size
 from django.contrib.messages import get_messages
@@ -54,23 +54,23 @@ class StudentUpdateForm(ModelForm):
 		self.helper.form_action = reverse('students_edit', kwargs={'pk': kwargs['instance'].id})		
 		self.helper.form_method = 'POST'
 		self.helper.form_class = 'form-horizontal'
-
+		
 		# set form field properties
 		self.helper.help_text_inline = True
 		self.helper.html5_required = True
 		self.helper.label_class = 'col-sm-2 control-label'
 		self.helper.field_class = 'col-sm-10'
-		
+
  		# add buttons
 		self.helper.layout = Layout(
 			Field('first_name', css_class='input-sm-10'),
 			Field('last_name', css_class='input-sm-10'),
 			Field('middle_name', css_class='input-sm-10'),
-			AppendedText('birthday', '<button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='datet'),			
+			PrependedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='date'),			
 			Field('photo', css_class='input-sm-10'),
 			Field('ticket', css_class='input-sm-10'),
 			Field('student_group', css_class='input-sm-10'),
-			Field('notes',rows=3),
+			Field('notes',rows=3),				
 			FormActions(Submit('add_button',u'Зберегти',css_class="btn btn-primary"),
 			Submit('cancel_button',u'Скасувати',css_class="btn btn-link"))
 		)
@@ -102,7 +102,7 @@ class StudentCreateForm(ModelForm):
 			Field('first_name', css_class='input-sm=10'),
 			Field('last_name', css_class='input-sm-10'),
 			Field('middle_name', css_class='input-sm-10'),
-			AppendedText('birthday', '<button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='date'),
+			PrependedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='date'),
 			Field('photo', css_class='input-sm-10'),
 			Field('ticket', css_class='input-sm-10'),
 			Field('student_group', css_class='input-sm-10'),
