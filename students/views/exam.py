@@ -9,7 +9,7 @@ from django.views.generic import UpdateView, CreateView, DeleteView
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
-from crispy_forms.bootstrap import FormActions, AppendedText
+from crispy_forms.bootstrap import FormActions, PrependedText
 
 from django.contrib.messages import get_messages
 from django.contrib import messages
@@ -90,7 +90,7 @@ class ExamForm(ModelForm):
         self.helper.layout = Layout(
 			Field('name', css_class='input-sm-10'),
 			Field('teacher', css_class='input-sm-10'),
-			AppendedText('data_time', '<button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='datet'),
+			PrependedText('data_time', '<span class="glyphicon glyphicon-calendar"></span>', active=True, css_class='date'),
 			Field('group', css_class='input-sm-10'),
 			FormActions(submit,Submit('cancel_button', u'Скасувати', css_class="btn btn-link"))
 		)
