@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import logging
 
+
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from .models import Student, Group, Exam
-
+		
 @receiver(post_save, sender=Student)
 def log_student_updated_added_event(sender, **kwargs):
 	"""	Writes information about newly added or updated student info log file """
