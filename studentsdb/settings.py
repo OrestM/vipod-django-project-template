@@ -118,6 +118,7 @@ from .email import *
 
 LOG_FILE = os.path.join(BASE_DIR, 'studentsdb.log')
 
+
 LOGGING = {
 	'version': 1,
 	'disable_existing_loggers': True,
@@ -137,7 +138,7 @@ LOGGING = {
 		'console': {
 			'level': 'INFO',
 			'class': 'logging.StreamHandler',
-			'formatter': 'verbose'
+			'formatter': 'verbose'			
 		},
 		'file': {
 			'level': 'INFO',
