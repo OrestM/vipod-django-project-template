@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 import logging
 
-
+from django.core.signals import request_started
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from .models import Student, Group, Exam
+
+@receiver(request_started)
+def my_callback(sender, **kwargs):
+	print("request_started")
 		
 @receiver(post_save, sender=Student)
 def log_student_updated_added_event(sender, **kwargs):
