@@ -9,7 +9,7 @@ h1{
 	margin-left: 250px;
 }
 strong{
-	margin-left: 250px;
+	margin-left: 240px;
 }
 select{
 	width: 43%;
@@ -24,7 +24,7 @@ select{
 	padding: 15px;
 	margin-bottom: 20px;
 	margin-left: 50px;
-	margin-right: 10px;
+	margin-right: 50px;
 }
 h2{
 	font-weight: bold;
@@ -54,7 +54,7 @@ h2{
 	margin-bottom: 10px;
 }
 .table{
-	width: 100%;
+	width: 92%;
 	max-width: 100%;
 	border-collapse: collapse;
 	display: table;
@@ -64,6 +64,7 @@ h2{
 	background-color: #fff;
 	border-spacing: 0;
 	margin-left: 50px;
+	margin-right: auto;
 }
 .thead{
 	display: table-header-group;
@@ -207,5 +208,5 @@ ul>a{
 hr{
 	margin-top: -15px;
 	margin-left: 50px;
-	margin-right: 10px;
+	margin-right: 50px;
 }
