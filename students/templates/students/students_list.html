@@ -1,15 +1,16 @@
-{% extends "students/base.html" %}
+﻿{% extends "students/base.html" %}
 
+{% load i18n %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block meta_title %}Студенти{% endblock meta_title %}
+{% block meta_title %}{% trans "Students" %}{% endblock meta_title %}
 
-{% block title %}База Студентів{% endblock title %}
+{% block title %}{% trans "Students" %}{% endblock title %}
 
 {% block content %}
 
-<a href="{% url "students_add" %}" id="student-add-form-link" class="btn btn-primary">Додати Студента</a>
+<a href="{% url "students_add" %}" id="student-add-form-link" class="btn btn-primary">{% trans "Add Student" %}</a>
  
 <!-- Starts Students Listing -->
 	
@@ -25,11 +26,11 @@
 		{% endif %}</a>
 		</th>
 		
-		  <th>Фото</th>
+		  <th>{% trans "Photo" %}</th>
 		  
 			<th>
 			  <a href="{% url "home" %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% endif %}" class="content-sorting">
-			Прізвище
+			{% trans "Last Name" %}
 			{% if order_by == 'last_name' and reverse != '1'%}&uarr;
 			{% elif order_by == 'last_name' and reverse == '1' %}&darr;
 			{% endif %}</a>
@@ -37,7 +38,7 @@
 			
 			<th>
 			  <a href="{% url "home" %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}" class="content-sorting">
-			Ім'я
+			{% trans "First Name" %}
 			{% if order_by == 'first_name' and reverse != '1'%}&uarr;
 			{% elif order_by == 'first_name' and reverse == '1' %}&darr;
 			{% endif %}</a>
@@ -45,13 +46,13 @@
 			
 			<th>
 			  <a href="{% url "home" %}?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&amp;reverse=1{% endif %}" class="content-sorting">
-			№ Білету
+			{% trans "Ticket #" %}
 			{% if order_by == 'ticket' and reverse != '1' %}&uarr;
 			{% elif order_by == 'ticket' and reverse == '1' %}&darr;
 			{% endif %}</a>
 			</th>
 			
-			<th>Дії</th>
+			<th>{% trans "Actions" %}</th>
 		</tr>
 	</thead>
 	{% endwith %}
@@ -72,12 +73,12 @@
 		<td>{{ student.ticket }}</td>
 	  <td>
 	<div class="btn-group">
-		<button class="btn btn-default dropdown-toggle" type"button" data-toggle="dropdown">Дія<span class="caret"></span>
+		<button class="btn btn-default dropdown-toggle" type"button" data-toggle="dropdown">{% trans "Action" %}<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="{% url "students_edit" student.id %}" class="student-edit-form-link">Редагувати Студента</a></li>
-		  <li><a href="{% url "journal" student.id %}" >Відвідування</a></li>
-		  <li><a href="{% url "students_delete" student.id %}" class="student-delete-form-link">Видалити Студента</a></li>
+		  <li><a href="{% url "students_edit" student.id %}" class="student-edit-form-link">{% trans "Edit" %}</a></li>
+		  <li><a href="{% url "journal" student.id %}" >{% trans "Journal" %}</a></li>
+		  <li><a href="{% url "students_delete" student.id %}" class="student-delete-form-link">{% trans "Delete" %}</a></li>
 		</ul>
 	 </div>
 	</td>

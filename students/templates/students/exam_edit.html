@@ -1,16 +1,17 @@
-{% extends "students/base.html" %}
+﻿{% extends "students/base.html" %}
 
+{% load i18n %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block meta_title %}Редагувати Іспит{% endblock meta_title %}
+{% block meta_title %}{% trans "Edit Exam" %}{% endblock meta_title %}
 
-{% block title %}Редагувати Іспит{% endblock title %}
+{% block title %}{% trans "Edit Exam" %}{% endblock title %}
 
 {% block status_message %}
   {% if errors %}
   <div class="alert alert-warning" role="alert">
-    Будь-ласка, виправте наступні помилки
+    {% trans "Please, correct the following errors" %}
   </div>
   {% endif %}
   
