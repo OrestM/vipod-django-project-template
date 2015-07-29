@@ -1,4 +1,4 @@
-"""studentsdb URL Configuration
+﻿"""studentsdb URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -26,6 +26,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from .settings import MEDIA_ROOT, DEBUG
 
+js_info_dict = {
+	'packages': ('students'),	
+}
+
 urlpatterns = patterns('',
 	# Students urls
 	url(r'^$', 'students.views.students.students_list', name='home'),
@@ -49,14 +53,15 @@ urlpatterns = patterns('',
 	url(r'^exam/add/$', ExamCreateView.as_view(), name='exam_add'),
 	url(r'^exam/(?P<pk>\d+)/edit/$', ExamUpdateView.as_view(), name='exam_edit'),
 	url(r'^exam/(?P<pk>\d+)/delete/$', ExamDeleteView.as_view(), name='exam_delete'),
-	
-    url(r'^admin/', include(admin.site.urls)),
-	
+		
 	# Contact Admin Form
 	url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin', name='contact_admin'),
 	#url(r'^contact-admin/$', ContactView.as_view(), name='contact_admin'),
 	#url(r'^', ContactView.as_view(), name='email-sent'),
 	
+	url(r'^jsi18n\.js$', 'django.views.i18n.javascript_catalog', js_info_dict),
+	
+	url(r'^admin/', include(admin.site.urls)),
 	
 	#This if forgot password
 	url(r'^admin/password_reset/$', auth_views.password_reset, name='admin_password_reset'),
