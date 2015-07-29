@@ -1,31 +1,32 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 class Exam(models.Model):
 	
 	class Meta(object):
-		verbose_name = u"Іспит"
-		verbose_name_plural = u"Іспити"
+		verbose_name = _(u"Exam")
+		verbose_name_plural = _(u"Exams")
 	
 	name=models.CharField(
 		max_length=256,
 		blank=False,
-		verbose_name=u"Назва Предмету")
+		verbose_name=_(u"Name of the subject"))
 		
 	data_time=models.DateField(
 		blank=False,
-		verbose_name=u"Дата і Час",
+		verbose_name=_(u"data and time"),
 		null=True)
 		
 	teacher=models.CharField(
 		max_length=256,
 		blank=False,
-		verbose_name=u"Викладач",
+		verbose_name=_(u"Teacher"),
 		default='')
 		
 	group = models.ForeignKey('Group',
-		verbose_name=u"Група",
+		verbose_name=_(u"Group"),
 		blank=False,
 		null=True,
 		on_delete=models.PROTECT)
