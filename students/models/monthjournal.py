@@ -3,8 +3,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 class MonthJournal(models.Model):
-	""" Student Monthly Journal """
-	
 	# add to class model monthjournal
 	class Meta:
 		verbose_name = _(u"Monthly Journal")

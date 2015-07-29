@@ -3,7 +3,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 class Journal(models.Model):
-
 	class Meta(object):
 		verbose_name =_(u"Exam")
 		verbose_name_plural = _(u"Exams")

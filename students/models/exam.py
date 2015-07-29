@@ -31,6 +31,5 @@ class Exam(models.Model):
 		null=True,
 		on_delete=models.PROTECT)
 		
-	
 	def __unicode__(self):
 		return u"%s %s %s" % (self.name, self.teacher, self.group)

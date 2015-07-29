@@ -3,8 +3,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 class Group(models.Model):
-    """Group Model"""
-
     class Meta(object):
         verbose_name = _(u"Group")
         verbose_name_plural = _(u"Groups")
