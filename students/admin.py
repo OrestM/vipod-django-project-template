@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 from models.students import Student
 from models.groups import Group
@@ -17,7 +18,7 @@ def make_copy(modeladmin, request, queryset):
 			notes = obj.notes)
         # method save
 		type_query.save()
-make_copy.short_description = u"Скопіювати обраного студента"
+make_copy.short_description = _(u"Copying chose student")
 
 class StudentFormAdmin(ModelForm):
 	def clean_student_group(self):
@@ -27,7 +28,7 @@ class StudentFormAdmin(ModelForm):
 		# get group where current student is a leader
 		groups = Group.objects.filter(leader=self.instance)
 		if len(groups) > 0 and self.cleaned_data['student_group'] != groups[0]:
-				raise ValidationError(u'Студент є старостою іншої групи.', code='invalid')
+				raise ValidationError_(u'Student are leader enother group', code='invalid')
 		return self.cleaned_data['student_group']
 
 class StudentAdmin(admin.ModelAdmin):
