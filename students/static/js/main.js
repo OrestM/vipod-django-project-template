@@ -16,7 +16,7 @@ function initJournal() {
 				indicator.show();				
 			},
 			'error': function(xhr, status, error){
-				alert(error);
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				indicator.hide();
 			},
 			'success': function(data, status, xhr){
@@ -68,7 +68,7 @@ function initEditStudentPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -89,7 +89,7 @@ function initEditStudentPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -111,7 +111,7 @@ function initEditStudentForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -150,7 +150,7 @@ function initAddStudentPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -171,7 +171,7 @@ function initAddStudentPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -193,7 +193,7 @@ function initAddStudentForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -232,7 +232,7 @@ function initDeleteStudentPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -253,7 +253,7 @@ function initDeleteStudentPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -266,7 +266,7 @@ function initDeleteStudentForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -306,7 +306,7 @@ function initAddGroupPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -327,7 +327,7 @@ function initAddGroupPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -346,7 +346,7 @@ function initAddGroupForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 			modal.find('.modal-body').html('<div class="alert alert-danger" role="alert">Йде відправка даних.</div>');
 		},
@@ -386,7 +386,7 @@ function initEditGroupPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -407,7 +407,7 @@ function initEditGroupPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -426,7 +426,7 @@ function initEditGroupForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -465,7 +465,7 @@ function initDeleteGroupPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -486,7 +486,7 @@ function initDeleteGroupPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -505,7 +505,7 @@ function initDeleteGroupForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -544,7 +544,7 @@ function initAddExamPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -565,7 +565,7 @@ function initAddExamPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -587,7 +587,7 @@ function initAddExamForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -626,7 +626,7 @@ function initEditExamPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -647,7 +647,7 @@ function initEditExamPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -669,7 +669,7 @@ function initEditExamForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -708,7 +708,7 @@ function initDeleteExamPage() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 
@@ -729,7 +729,7 @@ function initDeleteExamPage() {
 				});
 			},
 				'error': function(){
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false
 			}
 		});
@@ -751,7 +751,7 @@ function initDeleteExamForm(form, modal) {
 	form.ajaxForm({
 		'dataType': 'html',
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -789,7 +789,7 @@ function updatePageContext() {
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
-				alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
 			
@@ -799,7 +799,7 @@ function updatePageContext() {
 		},
 
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+			alert(gettext('There was an error on the server. Please, try again a bit later.'));
 			return false;
 		}
 	});
@@ -816,7 +816,7 @@ function ajaxFunctional(url) {
 				
                 // check if we got successfull response from the server    
                 if (status != 'success') {
-                    alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+                    alert(gettext('There was an error on the server. Please, try again a bit later.'));
                     return false;
                 }
                 var html = $(data), page = $(html.find("#content-column")), body = $('#content-column');
@@ -847,7 +847,7 @@ function ajaxFunctional(url) {
             },
 
             'error': function(){
-                alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+                alert(gettext('There was an error on the server. Please, try again a bit later.'));
                 return false;
             }
       });	
