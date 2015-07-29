@@ -38,17 +38,17 @@ class ContactForm(forms.Form):
 		self.helper.field_class = 'col-sm-10'
 		
 		# form buttons
-		self.helper.add_input(Submit('send_button', u'Надіслати'))
+		self.helper.add_input(Submit('send_button', _(u'Sent')))
 	
 	from_email = forms.EmailField(
-	label=_(u"Ваша Емейл Адреса"))
+	label=_(u"Yours email adress"))
 	
 	subject = forms.CharField(
-	label=_(u"Заголовок листа"),
+	label=_(u"Title letter"),
 	max_length=128)
 	
 	message = forms.CharField(
-	label=_(u"Текст повідомлення"), 
+	label=_(u"Text message"), 
 	widget=forms.Textarea)
 
 def contact_admin(request):
