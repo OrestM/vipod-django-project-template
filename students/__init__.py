@@ -1,1 +1,1 @@
-default_app_config = 'students.apps.StudentAppConfig'
+﻿default_app_config = 'students.apps.StudentAppConfig'
