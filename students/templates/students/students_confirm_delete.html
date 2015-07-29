@@ -12,7 +12,7 @@
 <form action="{% url "students_delete" object.id %}" method="post">
 	{% csrf_token %}
 	<p>{% blocktrans %}Do you really want to delete student: "{{ object }}"?{% endblocktrans %}</p>
-	<input type="submit" value="Так" name="delete_button" class="btn btn-danger" /><br /><br />
+	<input type="submit" value="{% trans "Yes" %}" name="delete_button" class="btn btn-danger" /><br /><br />
 	<!-- Add new button -->
 	<p>{% trans "If don't want press cancel" %}</p>
 	<input type="submit" value="Скасувати" name="cancel_button" class="btn btn-primary" /><br /><br />
