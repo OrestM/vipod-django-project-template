@@ -6,6 +6,7 @@ from django import forms
 from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
 #from django.contrib import messages
 #from django.contrib.messages import get_messages
 
@@ -41,14 +42,14 @@ class ContactForm(forms.Form):
 		self.helper.add_input(Submit('send_button', u'Надіслати'))
 	
 	from_email = forms.EmailField(
-	label=u"Ваша Емейл Адреса")
+	label=_(u"Ваша Емейл Адреса"))
 	
 	subject = forms.CharField(
-	label=u"Заголовок листа",
+	label=_(u"Заголовок листа"),
 	max_length=128)
 	
 	message = forms.CharField(
-	label=u"Текст повідомлення", 
+	label=_(u"Текст повідомлення"), 
 	widget=forms.Textarea)
 
 def contact_admin(request):
@@ -67,12 +68,12 @@ def contact_admin(request):
             try:
                 send_mail(subject, message, from_email, [ADMIN_EMAIL])
             except Exception:
-                message = u'Під час відправки листа виникла непередбачувана ' \
-                    u'помилка. Спробуйте скористатись даною формою пізніше.'
+                message = _(u"An error occured during email transfer. Please, "
+                    "try again later.")
                 logger = logging.getLogger(__name__)
                 logger.exception(message)
             else:
-                message = u'Повідомлення успішно надіслане!'
+                message = _(u"Message sent successfully!")
 
             # redirect to same contact page with success message
             return HttpResponseRedirect(

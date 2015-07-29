@@ -1,4 +1,4 @@
-import magic
+﻿import magic
 
 VALID_IMAGE_MINETYPES = [
     "image"

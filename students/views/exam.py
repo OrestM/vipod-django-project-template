@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from django.shortcuts import render
@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
 from django.views.generic import UpdateView, CreateView, DeleteView
+from django.utils.translation import ugettext as _
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
@@ -41,13 +42,13 @@ def exam_list(request):
 class BaseExamFormView(object):
 
     def get_success_url(self):
-        return u'%s?status_message=Зміни успішно збережено!' \
-            % reverse('exam')
+        return u'%s?status_message=%s' \
+            % reverse('exam'), _(u"Changes saved.")
 
     def post(self, request, *args, **kwargs):
         # handle cancel button
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(reverse('exam') + u'?status_message=Зміни скасовано.')
+            return HttpResponseRedirect(reverse('exam') + u'?status_message=%s' % _("Changes cancel."))
         else:
             return super(BaseExamFormView, self).post(request, *args, **kwargs)
 	
@@ -108,3 +109,11 @@ class ExamUpdateView(BaseExamFormView, UpdateView):
 class ExamDeleteView(BaseExamFormView, DeleteView):
 	model = Exam
 	template_name = 'students/exam_confirm_delete.html'
+	
+	def get_success_url(self):
+		return u'%s?status_message=%s' % (reverse('exam'),
+            _(u"Exam deleted successfully!"))
+	
+	def post(self, request, *args, **kwargs):
+		if request.POST.get('cancel_button'):
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Exam delete canceled!")))

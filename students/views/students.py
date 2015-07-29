@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, ValidationError
 from django.views.generic import UpdateView, CreateView, DeleteView
+from django.utils.translation import ugettext as _
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
@@ -115,26 +116,32 @@ class StudentCreateView(CreateView):
 	model = Student
 	template_name = 'students/students_add.html'
 	form_class = StudentCreateForm
-
+	
 	def get_success_url(self):
-		return u'%s?status_message=Студента збережено!' % reverse('home')
-				
+		return u'%s?status_message=%s' % (reverse('home'), _(u"Student added successfully!"))
+
 class StudentUpdateView(UpdateView):
 	model = Student
 	template_name = 'students/students_edit.html'
 	form_class = StudentUpdateForm
-		
+	
 	def get_success_url(self):
-		return u'%s?status_message=Студента успішно збережено!' % reverse ('home')
-			
+		return u'%s?status_message=%s' % (reverse('home'), _(u"Student updated successfully!"))
+		
+	def post(self, request, *args, **kwargs):
+		if request.POST.get('cancel_button'):
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Student update canceled!")))
+		else:
+			return super(StudentUpdateView, self).post(request, *args, **kwargs)
+		
 class StudentDeleteView(DeleteView):
 	model = Student
 	template_name = 'students/students_confirm_delete.html'
 	
 	def get_success_url(self):
-		return u'%s?status_message=Студента успішно видалено!' % reverse ('home')
-	
+		return u'%s?status_message=%s' % (reverse('home'),
+            _(u"Student deleted successfully!"))
+			
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect( u'%s?status_message=Видалення студента відмінено!' % reverse('home'))
-		return super(StudentUpdateView, self).post(request, *args, **kwargs)
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Student delete canceled!")))

@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, ValidationError
 from django.views.generic import DeleteView, UpdateView, CreateView
+from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
@@ -84,12 +85,12 @@ class GroupForm(ModelForm):
 class BaseGroupFormView(object):
 
     def get_success_url(self):
-        return u'%s?status_message=Зміни успішно збережено!' % reverse('groups')
+        return u'%s?status_message=%s' % (reverse('groups'), _(u"Changes saved successfully!"))
 
     def post(self, request, *args, **kwargs):
         # handle cancel button
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(reverse('groups') + u'?status_message=Зміни скасовано.')
+            return HttpResponseRedirect(reverse('groups') + u'?status_message=%s' % _('Changes cancled'))
         else:
             return super(BaseGroupFormView, self).post(request, *args, **kwargs)
 	
@@ -108,8 +109,10 @@ class GroupDeleteView(BaseGroupFormView, DeleteView):
 	model = Group
 	template_name = 'students/groups_confirm_delete.html'
 	
+	def get_success_url(self):
+		return u'%s?status_message=%s' % (reverse('groups'),
+            _(u"Group deleted successfully!"))
+	
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect( u'%s?status_message=Видалення групи відмінено!' % reverse('groups'))
-		return super(GroupForm, self).post(request, *args, **kwargs)
-	
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Group delete canceled!")))
