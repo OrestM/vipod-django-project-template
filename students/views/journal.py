@@ -1,6 +1,4 @@
-﻿# -*- coding: utf-8 -*-
-
-from datetime import datetime, date
+﻿from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange, weekday, day_abbr
 

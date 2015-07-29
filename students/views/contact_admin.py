@@ -1,5 +1,4 @@
-﻿# -*- coding: utf-8 -*-
-import logging
+﻿import logging
 
 from django.shortcuts import render
 from django import forms
