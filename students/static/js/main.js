@@ -57,6 +57,34 @@ function initDateFields() {
 	});
 }
 
+function initPage() {
+	$(document).on("click", 'a.content-url', function(event){
+		var link = $(this);
+		$.ajax({			
+			'url': link.attr('href'),
+			'dataType': 'html',
+			'type': 'get',			
+			'success': function(data, status, xhr){
+			
+			// check if we got successfull response from the server
+			if (status != 'success') {
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
+				return false;
+			}
+
+				// update modal window with arrived content from the server
+				var html = $(data), page = $(html.find("#content-column")), body = $('#content-column');
+                body.html(page);
+			},
+				'error': function(){
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
+				return false
+			}
+		});
+    return false;
+  });
+}
+
 function initEditStudentPage() {
 	$(document).on("click", 'a.student-edit-form-link', function(){
 		var link = $(this);
@@ -779,33 +807,89 @@ function initDeleteExamForm(form, modal) {
 	});
 }
 
-function updatePageContext() {	
-	var url = window.location.href;  
-	$.ajax({
-		'url': url,
-		'dataType': 'html',
-		'type': 'get',
-		'success': function(data, status, xhr){
+function initPaginatePage() {
+	$(document).on("click", 'a.content-pagination', function(event){
+		var link = $(this);
+		$.ajax({			
+			'url': link.attr('href'),
+			'dataType': 'html',
+			'type': 'get',			
+			'success': function(data, status, xhr){
 			
 			// check if we got successfull response from the server
 			if (status != 'success') {
 				alert(gettext('There was an error on the server. Please, try again a bit later.'));
 				return false;
 			}
-			
-			// update modal window with arrived content from the server
-			var table = $('.table'), newpage = $(data), newtable = newpage.find('.table');
-			table.html(newtable);			
-		},
 
-		'error': function(){
-			alert(gettext('There was an error on the server. Please, try again a bit later.'));
-			return false;
-		}
-	});
-	return false;
+				// update modal window with arrived content from the server
+				var html = $(data), page = $(html.find("#content-column")), body = $('#content-column');
+                body.html(page);
+			},
+				'error': function(){
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
+				return false
+			}
+		});
+    return false;
+  });
 }
 
+function initSortPage() {
+	$(document).on("click", 'a.content-sorting', function(event){
+		var link = $(this);
+		$.ajax({			
+			'url': link.attr('href'),
+			'dataType': 'html',
+			'type': 'get',			
+			'success': function(data, status, xhr){
+			
+			// check if we got successfull response from the server
+			if (status != 'success') {
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
+				return false;
+			}
+
+				// update modal window with arrived content from the server
+				var html = $(data), page = $(html.find("#content-column")), body = $('#content-column');
+                body.html(page);
+			},
+				'error': function(){
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
+				return false
+			}
+		});
+    return false;
+  });
+}
+
+function initGroupPage() {
+	$(document).on("click", '.content-group', function(event){
+		var link = $(this);
+		$.ajax({			
+			'url': link.attr('href'),
+			'dataType': 'html',
+			'type': 'get',			
+			'success': function(data, status, xhr){
+			
+			// check if we got successfull response from the server
+			if (status != 'success') {
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
+				return false;
+			}
+
+				// update modal window with arrived content from the server
+				var html = $(data), page = $(html.find("#content-column")), body = $('#content-column');
+                body.html(page);
+			},
+				'error': function(){
+				alert(gettext('There was an error on the server. Please, try again a bit later.'));
+				return false
+			}
+		});
+    return false;
+  });
+}
 
 function ajaxFunctional(url) {
         $.ajax({
@@ -839,7 +923,6 @@ function ajaxFunctional(url) {
 
 				window.onpopstate = function() {
 			  		var modal = $('#myModal');
-			  		modal.modal('hide');
 
 			  		var url2 = window.location.href; 
 			  		ajaxFunctional(url2);
@@ -854,7 +937,7 @@ function ajaxFunctional(url) {
 }
 
 function UpdateAllPage() {
-	$(document).on("click", "a.content-pagination, a.content-sorting, a.content-url", function(evnt) {
+	$(document).on("click", "a.content-pagination, a.content-sorting, a.content-url, .content-group", function(evnt) {
         var link = $(this);
         ajaxFunctional(link.attr('href'));		
         return false;
@@ -866,6 +949,7 @@ $(document).ready(function() {
 	initJournal();
 	initGroupSelector();
 	initDateFields();
+	initPage();
 	initEditStudentPage();
 	initAddStudentPage();
 	initDeleteStudentPage();
@@ -875,5 +959,8 @@ $(document).ready(function() {
 	initAddExamPage();
 	initEditExamPage();
 	initDeleteExamPage();
+	initPaginatePage();
+	initSortPage();
+	initGroupPage();
 	UpdateAllPage();
 });
