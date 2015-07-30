@@ -40,7 +40,7 @@
 		<!-- Groups Selector -->
 		<div class="col-xs-4" id="group-selector">
 			<strong>{% trans "Group" %}:</strong>
-			<select onchange="this.options[this.selectIndex].value && (window.location = this.options[this.selectedIndex].value);">
+			<select class="content-group" onchange="this.options[this.selectIndex].value && (window.location = this.options[this.selectedIndex].value);">
 			  <option value="">{% trans "All Students" %}</option>
 			 {% for group in GROUPS %}
 			 <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>
