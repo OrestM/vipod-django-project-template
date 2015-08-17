@@ -5,6 +5,9 @@ from django.forms import ModelForm, ValidationError
 from django.views.generic import DeleteView, UpdateView, CreateView
 from django.utils.translation import ugettext_lazy as _
 
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import FormActions
@@ -103,7 +106,7 @@ class GroupUpdateView(BaseGroupFormView, UpdateView):
     model = Group
     form_class = GroupForm
     template_name = 'students/groups_form.html'
-	
+			
 class GroupDeleteView(BaseGroupFormView, DeleteView):
 	model = Group
 	template_name = 'students/groups_confirm_delete.html'
@@ -114,4 +117,4 @@ class GroupDeleteView(BaseGroupFormView, DeleteView):
 	
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Group delete canceled!")))
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Group delete canceled!")))		
