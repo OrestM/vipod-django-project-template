@@ -47,6 +47,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 REGISTRATION_OPEN = True
 
+LOGIN_URL = 'users:auth_login'
+LOGOUT_URL = 'users:auth_logout'
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.locale.LocaleMiddleware',
