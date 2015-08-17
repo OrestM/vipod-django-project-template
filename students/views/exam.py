@@ -7,6 +7,9 @@ from django.forms import ModelForm
 from django.views.generic import UpdateView, CreateView, DeleteView
 from django.utils.translation import ugettext as _
 
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import FormActions, PrependedText
@@ -50,7 +53,7 @@ class BaseExamFormView(object):
             return HttpResponseRedirect(reverse('exam') + u'?status_message=%s' % _("Changes cancel."))
         else:
             return super(BaseExamFormView, self).post(request, *args, **kwargs)
-	
+
 class ExamForm(ModelForm):
     class Meta:
 		model = Exam
@@ -105,6 +108,7 @@ class ExamUpdateView(BaseExamFormView, UpdateView):
     form_class = ExamForm
     template_name = 'students/exam_edit.html'
 	
+		
 class ExamDeleteView(BaseExamFormView, DeleteView):
 	model = Exam
 	template_name = 'students/exam_confirm_delete.html'
@@ -115,4 +119,4 @@ class ExamDeleteView(BaseExamFormView, DeleteView):
 	
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
-			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Exam delete canceled!")))
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Exam delete canceled!")))	
