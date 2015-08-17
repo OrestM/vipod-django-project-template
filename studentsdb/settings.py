@@ -39,10 +39,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'crispy_forms',
+	'registration',
 	'students',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+REGISTRATION_OPEN = True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,7 +65,7 @@ ROOT_URLCONF = 'studentsdb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'studentsdb', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
