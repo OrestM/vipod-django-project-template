@@ -4,4 +4,5 @@ MySQL-python
 django-crispy-forms==1.4.0
 python-dateutil
 django-registration-redux==1.2
+python-social-auth==0.2.12
 
