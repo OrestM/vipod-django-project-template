@@ -60,13 +60,17 @@ urlpatterns = patterns('',
 	url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin', name='contact_admin'),
 	#url(r'^contact-admin/$', ContactView.as_view(), name='contact_admin'),
 	#url(r'^', ContactView.as_view(), name='email-sent'),
-	
-	url(r'^jsi18n\.js$', 'django.views.i18n.javascript_catalog', js_info_dict),
-	
+		
 	# User Related urls
+	url(r'^users/profile/$', login_required(TemplateView.as_view(template_name='registration/profile.html')), name='profile'),	
 	url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
 	url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
 	url(r'^users/', include('registration.backends.simple.urls', namespace='users')),
+	
+	# Social Auth Related urls
+	url('^social/', include('social.apps.django_app.urls', namespace='social')),
+	
+	url(r'^jsi18n\.js$', 'django.views.i18n.javascript_catalog', js_info_dict),
 	
 	url(r'^admin/', include(admin.site.urls)),
 	
