@@ -863,34 +863,6 @@ function initSortPage() {
   });
 }
 
-function initGroupPage() {
-	$(document).on("click", '.content-group', function(event){
-		var link = $(this);
-		$.ajax({			
-			'url': link.attr('href'),
-			'dataType': 'html',
-			'type': 'get',			
-			'success': function(data, status, xhr){
-			
-			// check if we got successfull response from the server
-			if (status != 'success') {
-				alert(gettext('There was an error on the server. Please, try again a bit later.'));
-				return false;
-			}
-
-				// update modal window with arrived content from the server
-				var html = $(data), page = $(html.find("#content-column")), body = $('#content-column');
-                body.html(page);
-			},
-				'error': function(){
-				alert(gettext('There was an error on the server. Please, try again a bit later.'));
-				return false
-			}
-		});
-    return false;
-  });
-}
-
 function ajaxFunctional(url) {
         $.ajax({
             'url': url,
@@ -961,6 +933,5 @@ $(document).ready(function() {
 	initDeleteExamPage();
 	initPaginatePage();
 	initSortPage();
-	initGroupPage();
 	UpdateAllPage();
 });
