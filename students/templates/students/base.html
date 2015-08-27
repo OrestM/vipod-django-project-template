@@ -41,7 +41,7 @@
 		{% if user.is_authenticated %}
 		<div class="col-xs-4" id="group-selector">
 			<strong>{% trans "Group" %}:</strong>
-			<select class="content-group" onchange="this.options[this.selectIndex].value && (window.location = this.options[this.selectedIndex].value);">
+			<select>
 			  <option value="">{% trans "All Students" %}</option>
 			 {% for group in GROUPS %}
 			 <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>
@@ -52,14 +52,17 @@
 		
 		<!-- User's toolbar for authenticated users -->
 		<div class="col-xs-2" id="user-toolbar">
-		  <span>{{ user.username }}</span> |
+		  <a href="{% url "profile" %}">{{ user.get_full_name|default:user.username }}</a>|
 		  <a href="{% url "users:auth_logout" %}">{% trans "Logout" %}</a>
 		</div>
 		
 		{% else %}
 		
 		<!-- User's toolbar for anonymous users -->
-		<div class="col-xs-6" id="user-toolbar">
+		<div class="col-xs-6" id="user-toolbar">		  
+		  <!-- <a href="{% url 'social:begin' 'google-oauth2' %}?next = {{ request.path }}">{% trans "Google" %}</a> |
+		  <a href="{% url 'social:begin' 'twitter' %}?next = {{ request.path }}">{% trans "Twitter" %}</a> |-->
+		  <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">{% trans "Facebook" %}</a> |
 		  <a href="{% url "users:auth_login" %}">{% trans "Login" %}</a> |
 		  <a href="{% url "users:registration_register" %}">{% trans "Register" %}</a>
 		</div>
@@ -73,11 +76,11 @@
 	  <div class="row" id="sub-header">
 	    <div class="col-xs-12">
 		  <ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" {% if request.path == url.home %}  class="active" {% endif %}><a href="{% url "home" %}" class="content-url">{% trans "Students" %}</a></li>
+			<li role="presentation" {% if request.path == url.home %}  class="active" {% endif %}><a href="{% url "home" %}">{% trans "Students" %}</a></li>
 			{% if user.is_authenticated %}
 			<li role="presentation" {% if request.path == url.journal %}  class="active" {% endif %}><a href="{% url "journal" %}" class="content-url">{% trans "Journal" %}</a></li>
-			<li role="presentation" {% if request.path == url.groups %}  class="active" {% endif %}><a href="{% url "groups" %}" class="content-url">{% trans "Groups" %}</a></li>
-			<li role="presentation" {% if request.path == url.exam %}  class="active" {% endif %}><a href="{% url "exam" %}" class="content-url">{% trans "Exam" %}</a></li>
+			<li role="presentation" {% if request.path == url.groups %}  class="active" {% endif %}><a href="{% url "groups" %}">{% trans "Groups" %}</a></li>
+			<li role="presentation" {% if request.path == url.exam %}  class="active" {% endif %}><a href="{% url "exam" %}">{% trans "Exam" %}</a></li>
 			{% endif %}
 			
 			{% if perms.auth.add_user %}
