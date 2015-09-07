@@ -14,9 +14,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/css/bootstrap-datetimepicker.min.css">
 	
 	<link rel="stylesheet" href="{{ PORTAL_URL }}{% static "css/main.css" %}">
-		
-	<!-- add jQuery -->
-	<script type="text/javascript" src="js/jquery.js"></script>
 			
 	{% block extra_css %}{% endblock extra_css %}
 	
@@ -43,12 +40,13 @@
 			<strong>{% trans "Group" %}:</strong>
 			<select>
 			  <option value="">{% trans "All Students" %}</option>
-			 {% for group in GROUPS %}
-			 <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>
-			 {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
-			 {% endfor %}
+			  {% for group in GROUPS %}
+			  <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>
+			  {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+			  {% endfor %}
 			</select>
 		</div>
+		
 		
 		<!-- User's toolbar for authenticated users -->
 		<div class="col-xs-2" id="user-toolbar">
@@ -79,7 +77,7 @@
 			<li role="presentation" {% if request.path == url.home %}  class="active" {% endif %}><a href="{% url "home" %}">{% trans "Students" %}</a></li>
 			{% if user.is_authenticated %}
 			<li role="presentation" {% if request.path == url.journal %}  class="active" {% endif %}><a href="{% url "journal" %}" class="content-url">{% trans "Journal" %}</a></li>
-			<li role="presentation" {% if request.path == url.groups %}  class="active" {% endif %}><a href="{% url "groups" %}">{% trans "Groups" %}</a></li>
+			<li role="presentation" {% if request.path == url.groups %} class="active" {% endif %}><a href="{% url "groups" %}">{% trans "Groups" %}</a></li>
 			<li role="presentation" {% if request.path == url.exam %}  class="active" {% endif %}><a href="{% url "exam" %}">{% trans "Exam" %}</a></li>
 			{% endif %}
 			
