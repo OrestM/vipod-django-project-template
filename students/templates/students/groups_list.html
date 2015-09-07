@@ -1,6 +1,7 @@
 ﻿{% extends "students/base.html" %}
 
 {% load i18n %}
+{% load pagenav %}
 
 {% block meta_title %}{% trans "Groups List" %}{% endblock meta_title %}
 
@@ -66,9 +67,6 @@
 <p>{% trans "There is no group in the database yet." %}</p>
 {% endif %}
 	<!-- End Students Listing -->
-{% with object_list=students %}
-{% include "students/pagination.html" %}
-{% endwith %}
-{%block pagination%}{%endblock pagination%}
+{% pagenav groups is_paginated paginator %}
 
 {% endblock content %}
