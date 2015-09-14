@@ -52,11 +52,11 @@ LOGOUT_URL = 'users:auth_logout'
 MIDDLEWARE_CLASSES = (
     'studentsdb.middleware.RequestTimeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',   
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -93,8 +93,8 @@ AUTHENTICATION_BACKENDS = (
    'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '860456600698438'
-SOCIAL_AUTH_FACEBOOK_SECRET = '7cdcaf28d6ff4deba686f42ea18642c3'
+SOCIAL_AUTH_FACEBOOK_KEY = '1617328995199209'
+SOCIAL_AUTH_FACEBOOK_SECRET = '2c9e66c1fab767d0dbdaa65da30f7fac'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
