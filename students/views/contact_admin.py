@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 import logging
-=======
-﻿import logging
->>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 
 from django.shortcuts import render
 from django import forms
@@ -109,8 +105,5 @@ class ContactView(FormView):
    			pass
 		messages.add_message(self.request, messages.INFO, u'Повідомлення відправлено.')
 		return super(ContactView, self).form_valid(form)
-<<<<<<< HEAD
 """
-=======
-"""
->>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
+

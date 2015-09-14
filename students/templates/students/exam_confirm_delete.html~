@@ -1,0 +1,22 @@
+{% extends "students/base.html" %}
+﻿{% extends "students/base.html" %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block meta_title %}{% trans "Delete Exam" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Delete Exam" %}{% endblock title %}
+
+{% block content %}
+
+<form action="{% url "exam_delete" object.id %}" method="post">
+	{% csrf_token %}
+	<p>{% blocktrans %}Do you really want to delete exam: "{{ object }}"?{% endblocktrans %}</p>
+	<input type="submit" value="{% trans "Yes" %}" name="delete_button" class="btn btn-danger" /><br /><br />
+	<!-- Add new button -->
+	<p>{% trans "If you don't want press Cancel" %}</p>
+	<input type="submit" value="{% trans "Cancel" %}" name="cancel_button" class="btn btn-primary" /><br /><br />
+</form>
+ 
+{% endblock content %}

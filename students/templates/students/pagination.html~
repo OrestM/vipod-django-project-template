@@ -1,0 +1,31 @@
+<<<<<<< HEAD
+{%block pagination%}
+=======
+﻿{%block pagination%}
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
+	<div class="row" id="content-columns">
+			<div class="col-xs-12" id="content-column">
+				<!-- check if we need paginated -->
+				{% if is_paginated %}
+				{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+				<nav>
+					<ul class="pagination">
+						<li>
+							<!-- link to first page -->
+							<a class="content-pagination" href="?page=1{%if order_by %}&amp;order_by={{ order_by }}{%endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">&laquo;</a>
+						</li>
+						{% for p in paginator.page_range %}
+						<li {% if object_list.number == p %}class="active"{% endif %}>
+							<a class="content-pagination" href="?page={{ p }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">{{ p }}</a>	
+						</li>
+						{% endfor %}
+						<li>
+							<a class="content-pagination" href="?page={{ paginator.num_pages }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">&raquo;</a>
+						</li>
+					</ul>
+				</nav>
+				{% endwith %}
+				{% endif %}
+			</div>
+		</div>
+{%endblock pagination%}

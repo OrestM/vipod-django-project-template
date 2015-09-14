@@ -1,0 +1,80 @@
+<<<<<<< HEAD
+{% extends "students/base.html" %}
+=======
+﻿{% extends "students/base.html" %}
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
+
+{% load i18n %}
+{% load pagenav %}
+
+{% block meta_title %}{% trans "Groups List" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Groups List" %}{% endblock title %}
+
+{% block content %}
+<a href="{% url "groups_add" %}" id="group-add-form-link" class="btn btn-primary">{% trans "Add Group" %}</a>
+<!-- Starts Students Listing -->
+{% if groups %}
+  <table class="table">
+  {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+    <thead>
+	  <tr>
+		<th>
+		  <a class="content-sorting" href="{% url "groups" %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		#
+		{% if order_by == 'id' and reverse != '1' %}&uarr;
+		{% elif order_by == 'id' and reverse == '1' %}&darr;
+		{% endif %}</a>
+		</th>
+		
+		<th>
+		  <a class="content-sorting" href="{% url "groups" %}?order_by=title{% if order_by == 'title' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		{% trans "Title" %}
+		{% if order_by == 'title' and reverse != '1' %}&uarr;
+		{% elif order_by == 'title' and reverse == '1' %}&darr;
+		{% endif %}</a>
+		</th>
+		
+		<th>
+		  <a class="content-sorting" href="{% url "groups" %}?order_by=leader{% if order_by == 'leader' and reverse != '1' %}&amp;reverse=1{% endif %}">
+		{% trans "Leader" %}
+		{% if order_by == 'leader' and reverse != '1' %}&uarr;
+		{% elif order_by == 'leader' and reverse == '1' %}&darr;
+		{% endif %}</a>
+		</th>
+		
+		<th>{% trans "Actions" %}</th>
+	  </tr>
+	</thead>
+	{% endwith %}
+	<tbody>
+	{% for group in groups %}
+	<tr>
+	  <td>{{ forloop.counter }}</td>
+	  <td><a href="{% url "groups_edit" group.id %}" class="group-edit-form-link">{{ group.title }}</td>
+	  <td><a href="{% url "groups_edit" group.id %}" class="group-edit-form-link">{{ group.leader }}</td>
+	<td>
+	  <div class="btn-group">
+		<button class="btn btn-default dropdown-toggle" type"button" data-toggle="dropdown">{% trans "Actions" %}<span class="caret"></span>
+		</button>
+		  <ul class="dropdown-menu" role="menu">
+		    <li><a href="{% url "groups_edit" group.id %}" class="group-edit-form-link">{% trans "Edit" %}</a></li>
+		    <li><a href="{% url "groups_delete" group.id %}" class="group-delete-form-link">{% trans "Delete" %}</a></li>
+		  </ul>
+	    </div>
+	  </td>
+	 </tr>
+	 {% endfor %}			  
+	</tbody>
+	</table>
+{% else %}
+<p>{% trans "There is no group in the database yet." %}</p>
+{% endif %}
+	<!-- End Students Listing -->
+{% pagenav groups is_paginated paginator %}
+
+<<<<<<< HEAD
+{% endblock content %}
+=======
+{% endblock content %}
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

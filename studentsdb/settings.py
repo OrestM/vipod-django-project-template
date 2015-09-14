@@ -30,28 +30,16 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'django.contrib.admin',
-<<<<<<< HEAD
     'django.contrib.auth',
-=======
-	'django.contrib.auth',
->>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'crispy_forms',
     'registration',
     'social.apps.django_app.default',
     'students',
     'studentsdb',
-=======
-	'crispy_forms',
-	'registration',
-	'social.apps.django_app.default',
-	'students',
-	'studentsdb',
->>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -62,15 +50,9 @@ LOGIN_URL = 'users:auth_login'
 LOGOUT_URL = 'users:auth_logout'
 
 MIDDLEWARE_CLASSES = (
-<<<<<<< HEAD
     'studentsdb.middleware.RequestTimeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-=======
-	'studentsdb.middleware.RequestTimeMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-	'django.middleware.locale.LocaleMiddleware',
->>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -95,19 +77,11 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-<<<<<<< HEAD
 		'django.core.context_processors.request',
 		'social.apps.django_app.context_processors.backends',
 		'social.apps.django_app.context_processors.login_redirect',
 		'studentsdb.context_processors.students_proc',
 		'students.context_processors.groups_processor',
-=======
-				'django.core.context_processors.request',
-				'social.apps.django_app.context_processors.backends',
-				'social.apps.django_app.context_processors.login_redirect',
-				'studentsdb.context_processors.students_proc',
-				'students.context_processors.groups_processor',
->>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
                 'django.contrib.messages.context_processors.messages',			
             ],
         },
@@ -119,13 +93,8 @@ AUTHENTICATION_BACKENDS = (
    'django.contrib.auth.backends.ModelBackend',
 )
 
-<<<<<<< HEAD
 SOCIAL_AUTH_FACEBOOK_KEY = '860456600698438'
 SOCIAL_AUTH_FACEBOOK_SECRET = '7cdcaf28d6ff4deba686f42ea18642c3'
-=======
-SOCIAL_AUTH_FACEBOOK_KEY = '1608639386075599'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'e7e33f3cfd7254e66bc5954f5c758ccf'
->>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -212,8 +181,4 @@ LOGGING = {
 			'level': 'INFO',
 		}
 	}
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
+ }

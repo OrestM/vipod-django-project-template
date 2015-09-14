@@ -82,6 +82,11 @@ TEMPLATES = [
 		'social.apps.django_app.context_processors.login_redirect',
 		'studentsdb.context_processors.students_proc',
 		'students.context_processors.groups_processor',
+		'django.core.context_processors.request',
+		'social.apps.django_app.context_processors.backends',
+		'social.apps.django_app.context_processors.login_redirect',
+		'studentsdb.context_processors.students_proc',
+		'students.context_processors.groups_processor',
                 'django.contrib.messages.context_processors.messages',			
             ],
         },
@@ -93,8 +98,8 @@ AUTHENTICATION_BACKENDS = (
    'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1617103585229179'
-SOCIAL_AUTH_FACEBOOK_SECRET = '96afbd17ac29766cd0a0bb6275899854'
+SOCIAL_AUTH_FACEBOOK_KEY = '860456600698438'
+SOCIAL_AUTH_FACEBOOK_SECRET = '7cdcaf28d6ff4deba686f42ea18642c3'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -181,4 +186,4 @@ LOGGING = {
 			'level': 'INFO',
 		}
 	}
-}
+ }
