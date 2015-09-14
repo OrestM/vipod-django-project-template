@@ -61,9 +61,7 @@
 		<div class="col-xs-6" id="user-toolbar">		  
 		  <!-- <a href="{% url 'social:begin' 'google-oauth2' %}?next = {{ request.path }}">{% trans "Google" %}</a> |
 		  <a href="{% url 'social:begin' 'twitter' %}?next = {{ request.path }}">{% trans "Twitter" %}</a> |-->
-		  <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
-		  <a img src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"/> {% trans "" %}</a> |
-		  <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">{% trans "Facebook" %}</a> |
+		  <a href="{% url 'social:begin' 'facebook' %}"> {% trans "Facebook" %}</a> |
 		  <a href="{% url "users:auth_login" %}">{% trans "Login" %}</a> |
 		  <a href="{% url "users:registration_register" %}">{% trans "Register" %}</a>
 		</div>
