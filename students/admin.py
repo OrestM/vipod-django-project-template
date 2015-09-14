@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
+=======
+﻿# -*- coding: utf-8 -*-
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, ValidationError
@@ -64,4 +68,8 @@ admin.site.register(Student, StudentAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Journal)
 admin.site.register(Exam)
+<<<<<<< HEAD
 admin.site.register(MonthJournal)
+=======
+admin.site.register(MonthJournal)
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 """studentsdb URL Configuration
+=======
+﻿"""studentsdb URL Configuration
+
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
 Examples:
@@ -85,4 +90,8 @@ from .settings import MEDIA_ROOT, DEBUG
 if DEBUG:
 	#serve files from media folder
 	urlpatterns += patterns('',
+<<<<<<< HEAD
 		url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}))	
+=======
+		url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}))		
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

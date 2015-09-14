@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 """
+=======
+﻿"""
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 WSGI config for studentsdb project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.

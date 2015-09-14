@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 from datetime import datetime
+=======
+﻿from datetime import datetime
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -45,7 +49,12 @@ def exam_list(request):
 class BaseExamFormView(object):
 
     def get_success_url(self):
+<<<<<<< HEAD
         return u'%s?status_message=%s' % (reverse('exam'), _(u"Changes saved."))
+=======
+        return u'%s?status_message=%s' \
+            % reverse('exam'), _(u"Changes saved.")
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 
     def post(self, request, *args, **kwargs):
         # handle cancel button
@@ -119,4 +128,8 @@ class ExamDeleteView(BaseExamFormView, DeleteView):
 	
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
+<<<<<<< HEAD
 			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Exam delete canceled!")))
+=======
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Exam delete canceled!")))	
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

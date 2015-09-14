@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 from django.db import models
+=======
+﻿from django.db import models
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 from django.utils.translation import ugettext_lazy as _
 
 class MonthJournal(models.Model):
@@ -54,8 +58,16 @@ class MonthJournal(models.Model):
 	"""
 	day = locals()
 	for field_number in range(1,32):
+<<<<<<< HEAD
 		day['present_day'+str(field_number)]=models.BooleanField(verbose_name = u'День '+str(field_number),
 		default=False)	
 	
 	def __unicode__(self):
 		return u'%s: %d, %d' % (self.student.last_name, self.date.month, self.date.year)
+=======
+		day['present_day'+str(field_number)]=models.BooleanField(verbose_name = u'День '+str(field_number), 
+		default=False)	
+	
+	def __unicode__(self):
+		return u'%s: %d, %d' % (self.student.last_name, self.date.month, self.date.year)
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

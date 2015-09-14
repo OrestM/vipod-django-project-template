@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 from datetime import datetime, date
+=======
+﻿from datetime import datetime, date
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange, weekday, day_abbr
 
@@ -107,4 +111,8 @@ class JournalView(TemplateView):
 		journal.save()
 		
 		# return success status
+<<<<<<< HEAD
 		return JsonResponse({'status': 'success'})
+=======
+		return JsonResponse({'status': 'success'})
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

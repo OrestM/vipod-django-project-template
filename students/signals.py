@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
+=======
+﻿# -*- coding: utf-8 -*-
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 import logging
 
 from django.core.signals import request_started
@@ -66,4 +70,8 @@ def log_exam_delete_event(sender, **kwargs):
 	logger = logging.getLogger(__name__)
 	
 	exam = kwargs['instance']
+<<<<<<< HEAD
 	logger.info("Exam delete: %s %s %s (ID: %d)", exam.name, exam.teacher, exam.group, exam.id)
+=======
+	logger.info("Exam delete: %s %s %s (ID: %d)", exam.name, exam.teacher, exam.group, exam.id)
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

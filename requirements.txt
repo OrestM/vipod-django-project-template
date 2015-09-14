@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 Django == 1.8.4
+=======
+Django == 1.8.1
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 Pillow
 MySQL-python
 django-crispy-forms==1.4.0
 python-dateutil
 django-registration-redux==1.2
 python-social-auth==0.2.12
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

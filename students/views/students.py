@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 from datetime import datetime
+=======
+﻿from datetime import datetime
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -15,7 +19,11 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import FormActions, PrependedText
 
+<<<<<<< HEAD
 #from .validation import valid_image_minetype, valid_image_size
+=======
+from .validation import valid_image_minetype, valid_image_size
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 from django.contrib.messages import get_messages
 from django.contrib import messages
 from ..utils import paginate, get_current_group
@@ -152,4 +160,8 @@ class StudentDeleteView(DeleteView):
 			
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
+<<<<<<< HEAD
 			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Student delete canceled!")))
+=======
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Student delete canceled!")))
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /*Global Styles*/
+=======
+﻿/*Global Styles*/
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
@@ -69,4 +73,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 #button-footer {
 	background-color: #f9f9f9;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c

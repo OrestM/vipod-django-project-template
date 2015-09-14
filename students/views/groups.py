@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
+=======
+﻿from django.shortcuts import render
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, ValidationError
@@ -118,4 +122,8 @@ class GroupDeleteView(BaseGroupFormView, DeleteView):
 	
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
+<<<<<<< HEAD
 			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Group delete canceled!")))
+=======
+			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('home'), _(u"Group delete canceled!")))		
+>>>>>>> 58be2f64b9e85d2fc89693035b62c5a192cfae8c
